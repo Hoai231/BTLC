@@ -29,8 +29,31 @@ namespace BTL_C_.src.Views.Admin
 
             dataGridViewAccount.AllowUserToAddRows = false;
         }
-
-
+        public void setFormData(string matk, string email, string tendangnhap, string vaitro, string status, string manv)
+        {
+            txtMaTaiKhoan.Text = matk;
+            txtEmail.Text = email;
+            txtTenDangNhap.Text = tendangnhap;
+            cmbVaiTro.SelectedItem = vaitro;
+            btnTrangThai.Text = status;
+            txtMaNV.Text = manv;
+        }
+        public void setAccountCellClickListener(DataGridViewCellEventHandler handler)
+     => dataGridViewAccount.CellClick += handler;
+        public void setLamMoiListener(EventHandler handler) => btnLamMoi.Click += handler;
+        public DataGridView GetDataGridView() => dataGridViewAccount;
+        public void resetForm()
+        {
+            txtEmail.Text = "";
+            txtMaNV.Text = "";
+            txtMaTaiKhoan.Text = "";
+            txtMatKhau.Text = "";
+            txtTenDangNhap.Text = "";
+            btnTrangThai.Text = "";
+            cmbVaiTro.SelectedItem = "";
+            dataGridViewAccount.ClearSelection();
+        }
 
     }
+
 }

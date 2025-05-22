@@ -35,6 +35,7 @@ namespace BTL_C_.src.Controllers.Admin
             viewAccounts = accountControl;
             accountDao = new AccountDAO();
             loadDataToGridView();
+            setupEventListener();
         }
         private void insertAccount(object sender, EventArgs e)
         {
@@ -94,6 +95,31 @@ namespace BTL_C_.src.Controllers.Admin
             viewAccounts.loadDataToGridView(dv);
 
         }
+        private void setupEventListener()
+        {
+            viewAccounts.setAccountCellClickListener(OnAccountCellClick);
+            viewAccounts.setLamMoiListener(reset);
+        }
+        private void OnAccountCellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                var dgv = viewAccounts.GetDataGridView();
+                var row = dgv.Rows[e.RowIndex];
+                string matk = row.Cells[0].Value.ToString();
+                string tendangnhap = row.Cells[1].Value.ToString();
+                string email = row.Cells[2].Value.ToString();
+                string vaitro = row.Cells[4].Value.ToString();
+                string manv = row.Cells[5].Value.ToString();
+                string status = row.Cells[6].Value.ToString();
+                viewAccounts.setFormData(matk, email, tendangnhap, vaitro, status, manv);
+            }
+        }
+        private void reset(object sender, EventArgs e)
+        {
+            viewAccounts.resetForm();
+        }
+
 
     }
 }

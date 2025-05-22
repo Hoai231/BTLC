@@ -39,8 +39,8 @@
             this.txtMatKhau = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.txtMaNV = new System.Windows.Forms.TextBox();
+            this.cmbVaiTro = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.btnTrangThai = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -148,23 +148,23 @@
             this.label6.TabIndex = 10;
             this.label6.Text = "Mã Nhân Viên";
             // 
-            // textBox1
+            // txtMaNV
             // 
-            this.textBox1.Location = new System.Drawing.Point(348, 207);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(163, 22);
-            this.textBox1.TabIndex = 11;
+            this.txtMaNV.Location = new System.Drawing.Point(348, 207);
+            this.txtMaNV.Name = "txtMaNV";
+            this.txtMaNV.Size = new System.Drawing.Size(163, 22);
+            this.txtMaNV.TabIndex = 11;
             // 
-            // comboBox1
+            // cmbVaiTro
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cmbVaiTro.FormattingEnabled = true;
+            this.cmbVaiTro.Items.AddRange(new object[] {
             "Admin",
             "Nhân Viên"});
-            this.comboBox1.Location = new System.Drawing.Point(620, 205);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 24);
-            this.comboBox1.TabIndex = 12;
+            this.cmbVaiTro.Location = new System.Drawing.Point(620, 205);
+            this.cmbVaiTro.Name = "cmbVaiTro";
+            this.cmbVaiTro.Size = new System.Drawing.Size(121, 24);
+            this.cmbVaiTro.TabIndex = 12;
             // 
             // label7
             // 
@@ -177,11 +177,13 @@
             // 
             // btnTrangThai
             // 
-            this.btnTrangThai.Location = new System.Drawing.Point(831, 205);
+            this.btnTrangThai.BackColor = System.Drawing.Color.LawnGreen;
+            this.btnTrangThai.ForeColor = System.Drawing.Color.Black;
+            this.btnTrangThai.Location = new System.Drawing.Point(804, 197);
             this.btnTrangThai.Name = "btnTrangThai";
-            this.btnTrangThai.Size = new System.Drawing.Size(89, 24);
+            this.btnTrangThai.Size = new System.Drawing.Size(151, 38);
             this.btnTrangThai.TabIndex = 14;
-            this.btnTrangThai.UseVisualStyleBackColor = true;
+            this.btnTrangThai.UseVisualStyleBackColor = false;
             // 
             // panel1
             // 
@@ -255,8 +257,8 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnTrangThai);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.cmbVaiTro);
+            this.Controls.Add(this.txtMaNV);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtMatKhau);
@@ -291,8 +293,8 @@
         private System.Windows.Forms.TextBox txtMatKhau;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox txtMaNV;
+        private System.Windows.Forms.ComboBox cmbVaiTro;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnTrangThai;
         private System.Windows.Forms.Panel panel1;
