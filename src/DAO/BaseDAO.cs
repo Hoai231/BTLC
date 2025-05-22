@@ -30,8 +30,7 @@ namespace BTL_C_.src.DAO
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.StackTrace);
-                return false;
+                throw new Exception("Thêm tài khoản không thành công!!!", ex);
             }
         }
 

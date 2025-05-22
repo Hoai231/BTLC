@@ -62,7 +62,7 @@
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(322, 133);
+            this.txtEmail.Location = new System.Drawing.Point(333, 133);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(293, 22);
             this.txtEmail.TabIndex = 2;
@@ -79,7 +79,7 @@
             // 
             // txtTenDangNhap
             // 
-            this.txtTenDangNhap.Location = new System.Drawing.Point(322, 187);
+            this.txtTenDangNhap.Location = new System.Drawing.Point(333, 183);
             this.txtTenDangNhap.Name = "txtTenDangNhap";
             this.txtTenDangNhap.Size = new System.Drawing.Size(293, 22);
             this.txtTenDangNhap.TabIndex = 4;
@@ -96,7 +96,7 @@
             // 
             // txtMatKhau
             // 
-            this.txtMatKhau.Location = new System.Drawing.Point(322, 240);
+            this.txtMatKhau.Location = new System.Drawing.Point(333, 240);
             this.txtMatKhau.Name = "txtMatKhau";
             this.txtMatKhau.Size = new System.Drawing.Size(293, 22);
             this.txtMatKhau.TabIndex = 6;
@@ -117,7 +117,7 @@
             this.cmbVaiTro.Items.AddRange(new object[] {
             "Admin",
             "Nhân Viên"});
-            this.cmbVaiTro.Location = new System.Drawing.Point(322, 296);
+            this.cmbVaiTro.Location = new System.Drawing.Point(333, 296);
             this.cmbVaiTro.Name = "cmbVaiTro";
             this.cmbVaiTro.Size = new System.Drawing.Size(113, 24);
             this.cmbVaiTro.TabIndex = 8;

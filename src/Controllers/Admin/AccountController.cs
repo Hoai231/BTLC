@@ -34,16 +34,24 @@ namespace BTL_C_.src.Controllers.Admin
                 {
                     return;
                 }
-
-                string employee_id = GenerateIdUtil.GenerateId("EMPLOYEE");
-                EmployeeModel employee = new EmployeeModel(employee_id, "", "", "", "", null);
                 string acc_id = GenerateIdUtil.GenerateId("ACC");
-                AccountModel account = new AccountModel(acc_id, viewFrmCreateAccount.getEmail(), viewFrmCreateAccount.getTenDangNhap(), HashPasswordUtil.hashPassword(viewFrmCreateAccount.getPassword()), viewFrmCreateAccount.getVaiTro(), employee_id);
-                if (!employeeDAO.Insert(employee))
+                AccountModel account = null;
+                if (viewFrmCreateAccount.getVaiTro() == "Admin")
                 {
-                    MessageUtil.ShowError("Thêm không thành công!!!");
-                    return;
+                    account = new AccountModel(acc_id, viewFrmCreateAccount.getEmail(), viewFrmCreateAccount.getTenDangNhap(), HashPasswordUtil.hashPassword(viewFrmCreateAccount.getPassword()), viewFrmCreateAccount.getVaiTro(), null);
                 }
+                else
+                {
+                    string employee_id = GenerateIdUtil.GenerateId("EMPLOYEE");
+                    EmployeeModel employee = new EmployeeModel(employee_id, "", "", "", "", null);
+                    account = new AccountModel(acc_id, viewFrmCreateAccount.getEmail(), viewFrmCreateAccount.getTenDangNhap(), HashPasswordUtil.hashPassword(viewFrmCreateAccount.getPassword()), viewFrmCreateAccount.getVaiTro(), employee_id);
+                    if (!employeeDAO.Insert(employee))
+                    {
+                        MessageUtil.ShowError("Thêm không thành công!!!");
+                        return;
+                    }
+                }
+
                 if (!accountDao.Insert(account))
                 {
                     MessageUtil.ShowError("Thêm không thành công!!!");
