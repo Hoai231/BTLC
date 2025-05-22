@@ -115,7 +115,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(119, 172);
+            this.label4.Location = new System.Drawing.Point(134, 172);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(62, 16);
             this.label4.TabIndex = 7;
@@ -245,7 +245,7 @@
             // 
             this.btnTim.Location = new System.Drawing.Point(914, 17);
             this.btnTim.Name = "btnTim";
-            this.btnTim.Size = new System.Drawing.Size(49, 23);
+            this.btnTim.Size = new System.Drawing.Size(49, 22);
             this.btnTim.TabIndex = 5;
             this.btnTim.Text = "Tìm";
             this.btnTim.UseVisualStyleBackColor = true;

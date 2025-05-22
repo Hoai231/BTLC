@@ -28,6 +28,20 @@ namespace BTL_C_.src.DAO
 
             return ExecuteNonQuery(query, parameters);
         }
+        public bool update(AccountModel acc)
+        {
+            string query = "UPDATE tblTaiKhoan SET email = @email, tendangnhap = @ten, vaitro = @vaitro, status = @status where matk = @matk ";
+            var parameters = new Dictionary<string, object>
+            {
+                {"@email", acc.getEmail() },
+                {"@ten", acc.getTen_dang_nhap() },
+                {"@vaitro", acc.getVai_tro() },
+                {"@status", acc.getStatus() },
+                {"@matk", acc.getMa_tai_khoan() }
+            };
+            return ExecuteNonQuery(query, parameters);
+
+        }
 
         protected override string getKeyColumn() => "matk";
 
@@ -44,7 +58,8 @@ namespace BTL_C_.src.DAO
            reader["tendangnhap"].ToString(),
            reader["matkhau"].ToString(),
            reader["vaitro"].ToString(),
-           reader["manv"] as string
+           reader["manv"] as string,
+           reader["status"].ToString()
        );
         }
     }

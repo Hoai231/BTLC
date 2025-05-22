@@ -14,6 +14,7 @@ namespace BTL_C_.src.Models
         private string mat_khau;
         private string vai_tro;
         private string ma_nhan_vien;
+        private string status;
         // Constructor không tham số
         public AccountModel()
         {
@@ -21,7 +22,7 @@ namespace BTL_C_.src.Models
 
         // Constructor đầy đủ
         public AccountModel(string ma_tai_khoan, string email, string ten_dang_nhap,
-                       string mat_khau, string vai_tro, string ma_nhan_vien)
+                       string mat_khau, string vai_tro, string ma_nhan_vien, string status)
         {
             this.ma_tai_khoan = ma_tai_khoan;
             this.email = email;
@@ -29,6 +30,7 @@ namespace BTL_C_.src.Models
             this.mat_khau = mat_khau;
             this.vai_tro = vai_tro;
             this.ma_nhan_vien = ma_nhan_vien;
+            this.status = status;
         }
 
         // Getters and Setters
@@ -90,6 +92,14 @@ namespace BTL_C_.src.Models
         public void setMa_nhan_vien(string ma_nhan_vien)
         {
             this.ma_nhan_vien = ma_nhan_vien;
+        }
+        public string getStatus()
+        {
+            return status;
+        }
+        public void setStatus(string status)
+        {
+            this.status = status;
         }
     }
 }

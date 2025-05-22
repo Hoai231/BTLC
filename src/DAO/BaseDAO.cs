@@ -39,28 +39,6 @@ namespace BTL_C_.src.DAO
             }
         }
 
-        // Hàm này bạn có thể mở rộng cho SELECT, GetAll...
-        protected DataTable ExecuteQuery(string query, Dictionary<string, object> parameters = null)
-        {
-            DataTable dt = new DataTable();
-            using (SqlConnection conn = ConfigDB.GetConnection())
-            using (SqlCommand cmd = new SqlCommand(query, conn))
-            {
-                if (parameters != null)
-                {
-                    foreach (var param in parameters)
-                    {
-                        cmd.Parameters.AddWithValue(param.Key, param.Value ?? DBNull.Value);
-                    }
-                }
-
-                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
-                {
-                    adapter.Fill(dt);
-                }
-            }
-            return dt;
-        }
         public bool checkExist(String value)
         {
             string query = "Select Count(*) from " + GetTableName() + " where " + GetKeyExist() + " = @value";

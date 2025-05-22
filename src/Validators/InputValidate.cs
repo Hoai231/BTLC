@@ -1,6 +1,7 @@
 ﻿using BTL_C_.src.Utils;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,7 +21,16 @@ namespace BTL_C_.src.Validators
         }
         public static bool inputCreateAccountValidate(string email, string name, string password, string role)
         {
-            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(role))
+            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(role))
+            {
+                MessageUtil.ShowWarning("Thông tin không được để trống!");
+                return false;
+            }
+            return true;
+        }
+        public static bool inputUpdateAccountValidate(string email, string name, string vaitro, string status)
+        {
+            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(vaitro) || string.IsNullOrWhiteSpace(status))
             {
                 MessageUtil.ShowWarning("Thông tin không được để trống!");
                 return false;

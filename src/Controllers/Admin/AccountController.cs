@@ -58,13 +58,13 @@ namespace BTL_C_.src.Controllers.Admin
                 AccountModel account = null;
                 if (viewFrmCreateAccount.getVaiTro() == "Admin")
                 {
-                    account = new AccountModel(acc_id, viewFrmCreateAccount.getEmail(), viewFrmCreateAccount.getTenDangNhap(), HashPasswordUtil.hashPassword(viewFrmCreateAccount.getPassword()), viewFrmCreateAccount.getVaiTro(), null);
+                    account = new AccountModel(acc_id, viewFrmCreateAccount.getEmail(), viewFrmCreateAccount.getTenDangNhap(), HashPasswordUtil.hashPassword(viewFrmCreateAccount.getPassword()), viewFrmCreateAccount.getVaiTro(), null, null);
                 }
                 else
                 {
                     string employee_id = GenerateIdUtil.GenerateId("EMPLOYEE");
                     EmployeeModel employee = new EmployeeModel(employee_id, "", "", "", "", null);
-                    account = new AccountModel(acc_id, viewFrmCreateAccount.getEmail(), viewFrmCreateAccount.getTenDangNhap(), HashPasswordUtil.hashPassword(viewFrmCreateAccount.getPassword()), viewFrmCreateAccount.getVaiTro(), employee_id);
+                    account = new AccountModel(acc_id, viewFrmCreateAccount.getEmail(), viewFrmCreateAccount.getTenDangNhap(), HashPasswordUtil.hashPassword(viewFrmCreateAccount.getPassword()), viewFrmCreateAccount.getVaiTro(), employee_id, null);
                     if (!employeeDAO.insert(employee))
                     {
                         MessageUtil.ShowError("Thêm không thành công!!!");
@@ -99,6 +99,7 @@ namespace BTL_C_.src.Controllers.Admin
         {
             viewAccounts.setAccountCellClickListener(OnAccountCellClick);
             viewAccounts.setLamMoiListener(reset);
+            viewAccounts.setLuuListener(updateAccount);
         }
         private void OnAccountCellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -120,6 +121,32 @@ namespace BTL_C_.src.Controllers.Admin
             viewAccounts.resetForm();
         }
 
-
+        private void updateAccount(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(viewAccounts.getMatk()))
+                {
+                    MessageUtil.ShowWarning("Vui lòng chọn tài khoản muốn sửa!");
+                    return;
+                }
+                if (!ImputValidate.inputUpdateAccountValidate(viewAccounts.getEmail(), viewAccounts.getTenDangNhap(), viewAccounts.getStatus(), viewAccounts.getVaiTro()))
+                {
+                    return;
+                }
+                AccountModel account = new AccountModel(viewAccounts.getMatk(), viewAccounts.getEmail(), viewAccounts.getTenDangNhap(), "", viewAccounts.getVaiTro(), "", viewAccounts.getStatus());
+                if (!accountDao.update(account))
+                {
+                    MessageUtil.ShowError("Cập nhật không thành công!!!");
+                    return;
+                }
+                MessageUtil.ShowInfo("Cập nhật thành công!");
+                loadDataToGridView();
+            }
+            catch (Exception ex)
+            {
+                ErrorUtil.handle(ex, "Đã xảy ra lỗi khi cập nhật!!!");
+            }
+        }
     }
 }
