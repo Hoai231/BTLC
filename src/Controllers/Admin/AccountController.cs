@@ -5,10 +5,14 @@ using BTL_C_.src.Validators;
 using BTL_C_.src.Views.Admin;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace BTL_C_.src.Controllers.Admin
 {
@@ -34,6 +38,14 @@ namespace BTL_C_.src.Controllers.Admin
                 {
                     return;
                 }
+
+
+                if (accountDao.checkExist(viewFrmCreateAccount.getEmail()))
+                {
+
+                    MessageUtil.ShowWarning("Email đã tồn tại!!!");
+                    return;
+                }
                 string acc_id = GenerateIdUtil.GenerateId("ACC");
                 AccountModel account = null;
                 if (viewFrmCreateAccount.getVaiTro() == "Admin")
@@ -45,14 +57,14 @@ namespace BTL_C_.src.Controllers.Admin
                     string employee_id = GenerateIdUtil.GenerateId("EMPLOYEE");
                     EmployeeModel employee = new EmployeeModel(employee_id, "", "", "", "", null);
                     account = new AccountModel(acc_id, viewFrmCreateAccount.getEmail(), viewFrmCreateAccount.getTenDangNhap(), HashPasswordUtil.hashPassword(viewFrmCreateAccount.getPassword()), viewFrmCreateAccount.getVaiTro(), employee_id);
-                    if (!employeeDAO.Insert(employee))
+                    if (!employeeDAO.insert(employee))
                     {
                         MessageUtil.ShowError("Thêm không thành công!!!");
                         return;
                     }
                 }
 
-                if (!accountDao.Insert(account))
+                if (!accountDao.insert(account))
                 {
                     MessageUtil.ShowError("Thêm không thành công!!!");
                     return;

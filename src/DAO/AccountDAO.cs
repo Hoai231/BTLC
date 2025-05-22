@@ -10,7 +10,7 @@ namespace BTL_C_.src.DAO
 {
     internal class AccountDAO : BaseDAO<AccountModel>
     {
-        public bool Insert(AccountModel acc)
+        public bool insert(AccountModel acc)
         {
             string query = "INSERT INTO tblTaiKhoan (matk, email, tendangnhap, matkhau, vaitro, manv) " +
                            "VALUES (@ma, @email, @ten, @matkhau, @vaitro, @manv)";
@@ -27,5 +27,13 @@ namespace BTL_C_.src.DAO
 
             return ExecuteNonQuery(query, parameters);
         }
+
+        protected override string getKeyColumn() => "matk";
+
+        protected override string GetKeyExist() => "email";
+
+
+        protected override string GetTableName() => "tblTaiKhoan";
+
     }
 }

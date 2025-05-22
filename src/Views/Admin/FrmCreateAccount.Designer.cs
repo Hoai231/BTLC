@@ -148,7 +148,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "FrmCreateAccount";
-            this.Text = "FrmCreateAccount1";
+            this.Text = "FrmCreateAccount";
             this.ResumeLayout(false);
             this.PerformLayout();
 

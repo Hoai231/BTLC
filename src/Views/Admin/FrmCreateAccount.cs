@@ -33,7 +33,10 @@ namespace BTL_C_.src.Views.Admin
         {
             return cmbVaiTro.SelectedItem?.ToString() ?? string.Empty;
         }
+        //public void setTaoListener(EventHandler handler) => btnTao.Click += handler;
         public void setTaoListener(EventHandler handler) => btnTao.Click += handler;
+
+
 
 
     }

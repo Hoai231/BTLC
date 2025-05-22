@@ -9,7 +9,7 @@ namespace BTL_C_.src.DAO
 {
     internal class EmployeeDAO : BaseDAO<EmployeeModel>
     {
-        public bool Insert(EmployeeModel employee)
+        public bool insert(EmployeeModel employee)
         {
             string query = "INSERT INTO tblNhanVien (manv, tennv, gioitinh,ngaysinh, sdt, diachi,macv) " +
                            "VALUES (@ma, @ten, @gioitinh, @ngaysinh, @sdt, @diachi,@macv)";
@@ -26,6 +26,21 @@ namespace BTL_C_.src.DAO
         };
 
             return ExecuteNonQuery(query, parameters);
+        }
+
+        protected override string getKeyColumn()
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override string GetKeyExist()
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override string GetTableName()
+        {
+            throw new NotImplementedException();
         }
     }
 }
