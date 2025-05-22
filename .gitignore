@@ -1,0 +1,62 @@
+# Build Folders
+bin/
+obj/
+
+# Visual Studio files
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# NuGet Packages
+*.nupkg
+# NuGet v3's project.json files
+project.lock.json
+project.fragment.lock.json
+
+# Rider IDE
+.idea/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Test results
+TestResults/
+
+# Resharper files
+_ReSharper*/
+*.DotSettings.user
+
+# Publish outputs
+publish/
+
+# VS Code settings folder
+.vscode/
+
+# Dependency directories
+packages/
+
+# Rider cache
+.idea/
+
+# Others
+*.cache
+*.pdb
+*.mdb
+*.ilk
+*.obj
+*.exe
+*.dll
+*.app
+*.lib
+
+# User-specific files
+*.userprefs
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
