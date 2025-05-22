@@ -1,6 +1,7 @@
 ﻿using BTL_C_.src.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,6 +40,11 @@ namespace BTL_C_.src.DAO
         }
 
         protected override string GetTableName()
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override EmployeeModel MapReaderToObject(SqlDataReader reader)
         {
             throw new NotImplementedException();
         }

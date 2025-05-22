@@ -14,7 +14,7 @@ namespace BTL_C_.src.Controllers
         {
             Home home = new Home();
             home.Show();
-            previousForm.Dispose();
+            previousForm.Hide();
         }
     }
 }

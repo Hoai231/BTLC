@@ -1,6 +1,6 @@
 ﻿namespace BTL_C_.src.Views
 {
-    partial class LoginForm
+    partial class FrmLogin
     {
         /// <summary>
         /// Required designer variable.

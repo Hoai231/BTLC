@@ -19,6 +19,7 @@ namespace BTL_C_.src.Controllers.Admin
     internal class AccountController
     {
         private FrmCreateAccount viewFrmCreateAccount;
+        private AccountControl viewAccounts;
         private AccountDAO accountDao;
         private EmployeeDAO employeeDAO;
         public AccountController(FrmCreateAccount viewFrmCreateAccount)
@@ -28,6 +29,12 @@ namespace BTL_C_.src.Controllers.Admin
             accountDao = new AccountDAO();
             employeeDAO = new EmployeeDAO();
             viewFrmCreateAccount.setTaoListener(insertAccount);
+        }
+        public AccountController(AccountControl accountControl)
+        {
+            viewAccounts = accountControl;
+            accountDao = new AccountDAO();
+            loadDataToGridView();
         }
         private void insertAccount(object sender, EventArgs e)
         {
@@ -75,6 +82,17 @@ namespace BTL_C_.src.Controllers.Admin
             {
                 ErrorUtil.handle(ex, "Đã xảy ra lỗi khi thêm tài khoản!!!");
             }
+        }
+        private void loadDataToGridView()
+        {// Giả sử bạn đã có DataTable chứa dữ liệu tài khoản
+            DataTable allAccounts = accountDao.getAllRecord();
+
+            // Tạo DataView từ DataTable và lọc theo vai trò
+            DataView dv = new DataView(allAccounts);
+            dv.RowFilter = "vaitro = 'Nhân Viên'";
+
+            viewAccounts.loadDataToGridView(dv);
+
         }
 
     }

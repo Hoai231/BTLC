@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace BTL_C_.src.Views
 {
-    public partial class LoginForm : Form
+    public partial class FrmLogin : Form
     {
-        public LoginForm()
+        public FrmLogin()
         {
             this.InitializeComponent(); // Explicitly qualify the method call to resolve ambiguity  
         }
@@ -32,6 +32,10 @@ namespace BTL_C_.src.Views
         private void LoginForm_Load(object sender, EventArgs e)
         {
 
+        }
+        public Form getForm()
+        {
+            return this;
         }
     }
 }

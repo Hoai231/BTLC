@@ -75,5 +75,58 @@ namespace BTL_C_.src.DAO
                 return count > 0; // nếu > 0 thì tồn tại
             }
         }
+        public T findRecordByField(string field, string value)
+        {
+            string query = "Select * from " + GetTableName() + " where " + field + " = @value";
+
+            try
+            {
+                using (SqlConnection conn = ConfigDB.GetConnection())
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@value", value);
+                    conn.Open();
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return MapReaderToObject(reader);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log lỗi, hoặc xử lý tùy app (throw lại, hoặc trả null, hoặc báo lỗi)
+                throw new Exception("Đã xảy ra lỗi khi truy vấn!!!", ex);
+                // Có thể throw lại để bên trên bắt hoặc trả mặc định
+            }
+
+            return default(T);
+        }
+
+        protected abstract T MapReaderToObject(SqlDataReader reader);
+        public DataTable getAllRecord()
+        {
+            string query = "SELECT * FROM " + GetTableName();
+
+            using (SqlConnection conn = ConfigDB.GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    return dt;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Đã xảy ra lỗi khi truy vấn!!!", ex);
+                }
+            }
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using BTL_C_.src.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Principal;
 using System.Text;
@@ -35,5 +36,16 @@ namespace BTL_C_.src.DAO
 
         protected override string GetTableName() => "tblTaiKhoan";
 
+        protected override AccountModel MapReaderToObject(SqlDataReader reader)
+        {
+            return new AccountModel(
+           reader["matk"].ToString(),
+           reader["email"].ToString(),
+           reader["tendangnhap"].ToString(),
+           reader["matkhau"].ToString(),
+           reader["vaitro"].ToString(),
+           reader["manv"] as string
+       );
+        }
     }
 }
