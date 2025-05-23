@@ -36,7 +36,7 @@ namespace BTL_C_.src.DAO
             }
             catch (Exception ex)
             {
-                throw new Exception("Thêm tài khoản không thành công!!!", ex);
+                throw new Exception("Đã xảy ra lỗi!!!", ex);
             }
         }
 

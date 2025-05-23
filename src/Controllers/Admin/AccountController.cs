@@ -101,6 +101,7 @@ namespace BTL_C_.src.Controllers.Admin
             viewAccounts.setLamMoiListener(reset);
             viewAccounts.setLuuListener(updateAccount);
             viewAccounts.setXoaListener(deleteAccount);
+            viewAccounts.setTrangThaiListener(changeStatus);
         }
         private void OnAccountCellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -111,9 +112,9 @@ namespace BTL_C_.src.Controllers.Admin
                 string matk = row.Cells[0].Value.ToString();
                 string tendangnhap = row.Cells[1].Value.ToString();
                 string email = row.Cells[2].Value.ToString();
-                string vaitro = row.Cells[4].Value.ToString();
-                string manv = row.Cells[5].Value.ToString();
-                string status = row.Cells[6].Value.ToString();
+                string vaitro = row.Cells[3].Value.ToString();
+                string manv = row.Cells[4].Value.ToString();
+                string status = row.Cells[5].Value.ToString();
                 viewAccounts.setFormData(matk, email, tendangnhap, vaitro, status, manv);
             }
         }
@@ -170,6 +171,31 @@ namespace BTL_C_.src.Controllers.Admin
             {
 
                 ErrorUtil.handle(ex, "Đã xảy ra lỗi khi xóa!!!");
+            }
+        }
+        private void changeStatus(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(viewAccounts.getMatk()))
+            {
+                MessageUtil.ShowWarning("Vui lòng chọn tài khoản muốn sửa!");
+                return;
+            }
+            String newStatus = viewAccounts.getStatus().Equals("hoạt động") ? "ngừng hoạt động" : "hoạt động";
+            viewAccounts.setStatus(newStatus);
+
+            try
+            {
+                if (!accountDao.changeStatus(viewAccounts.getStatus(), viewAccounts.getMatk()))
+                {
+                    MessageUtil.ShowWarning("Cập nhật thất bại!");
+                    return;
+                }
+
+                loadDataToGridView();
+            }
+            catch (Exception ex)
+            {
+                ErrorUtil.handle(ex, "Đã xảy ra lỗi khi thay đổi trạng thái!!!");
             }
         }
     }

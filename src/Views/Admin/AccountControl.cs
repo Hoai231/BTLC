@@ -43,6 +43,7 @@ namespace BTL_C_.src.Views.Admin
         public void setLamMoiListener(EventHandler handler) => btnLamMoi.Click += handler;
         public void setLuuListener(EventHandler handler) => btnLuu.Click += handler;
         public void setXoaListener(EventHandler handler) => btnXoa.Click += handler;
+        public void setTrangThaiListener(EventHandler handler) => btnTrangThai.Click += handler;
         public DataGridView GetDataGridView() => dataGridViewAccount;
         public void resetForm()
         {
@@ -78,6 +79,10 @@ namespace BTL_C_.src.Views.Admin
         public string getMaNV()
         {
             return txtMaNV.Text.Trim();
+        }
+        public void setStatus(string status)
+        {
+            btnTrangThai.Text = status;
         }
     }
 

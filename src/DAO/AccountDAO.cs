@@ -1,5 +1,6 @@
 ﻿using BTL_C_.src.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -41,6 +42,18 @@ namespace BTL_C_.src.DAO
                 {"@matk", acc.getMa_tai_khoan() }
             };
             return ExecuteNonQuery(query, parameters);
+
+        }
+        public bool changeStatus(string status, string keyvalue)
+        {
+            string sql = "UPDATE tblTaiKhoan SET status = @value where matk = @keyvalue";
+            var parameters = new Dictionary<string, object>
+            {
+                {"@value",status },
+                {"@keyvalue",keyvalue }
+
+            };
+            return ExecuteNonQuery(sql, parameters);
 
         }
 
