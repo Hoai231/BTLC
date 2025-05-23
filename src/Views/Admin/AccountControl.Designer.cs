@@ -52,6 +52,7 @@ namespace BTL_C_.src.Views.Admin
             this.btnXoa = new System.Windows.Forms.Button();
             this.btnLuu = new System.Windows.Forms.Button();
             this.btnLamMoi = new System.Windows.Forms.Button();
+            this.btnTao = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAccount)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -135,7 +136,7 @@ namespace BTL_C_.src.Views.Admin
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Red;
-            this.label5.Location = new System.Drawing.Point(371, 17);
+            this.label5.Location = new System.Drawing.Point(393, 20);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(165, 38);
             this.label5.TabIndex = 9;
@@ -189,6 +190,7 @@ namespace BTL_C_.src.Views.Admin
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnTao);
             this.panel1.Controls.Add(this.btnTim);
             this.panel1.Controls.Add(this.txtSearch);
             this.panel1.Controls.Add(this.label8);
@@ -227,30 +229,39 @@ namespace BTL_C_.src.Views.Admin
             // 
             // btnXoa
             // 
-            this.btnXoa.Location = new System.Drawing.Point(386, 11);
+            this.btnXoa.Location = new System.Drawing.Point(319, 11);
             this.btnXoa.Name = "btnXoa";
-            this.btnXoa.Size = new System.Drawing.Size(110, 34);
+            this.btnXoa.Size = new System.Drawing.Size(103, 34);
             this.btnXoa.TabIndex = 2;
             this.btnXoa.Text = "Xóa";
             this.btnXoa.UseVisualStyleBackColor = true;
             // 
             // btnLuu
             // 
-            this.btnLuu.Location = new System.Drawing.Point(220, 11);
+            this.btnLuu.Location = new System.Drawing.Point(171, 11);
             this.btnLuu.Name = "btnLuu";
-            this.btnLuu.Size = new System.Drawing.Size(112, 34);
+            this.btnLuu.Size = new System.Drawing.Size(106, 34);
             this.btnLuu.TabIndex = 1;
             this.btnLuu.Text = "Lưu";
             this.btnLuu.UseVisualStyleBackColor = true;
             // 
             // btnLamMoi
             // 
-            this.btnLamMoi.Location = new System.Drawing.Point(61, 11);
+            this.btnLamMoi.Location = new System.Drawing.Point(19, 11);
             this.btnLamMoi.Name = "btnLamMoi";
-            this.btnLamMoi.Size = new System.Drawing.Size(117, 34);
+            this.btnLamMoi.Size = new System.Drawing.Size(113, 34);
             this.btnLamMoi.TabIndex = 0;
             this.btnLamMoi.Text = "Làm Mới";
             this.btnLamMoi.UseVisualStyleBackColor = true;
+            // 
+            // btnTao
+            // 
+            this.btnTao.Location = new System.Drawing.Point(458, 11);
+            this.btnTao.Name = "btnTao";
+            this.btnTao.Size = new System.Drawing.Size(97, 34);
+            this.btnTao.TabIndex = 6;
+            this.btnTao.Text = "Tạo";
+            this.btnTao.UseVisualStyleBackColor = true;
             // 
             // AccountControl
             // 
@@ -306,5 +317,6 @@ namespace BTL_C_.src.Views.Admin
         private System.Windows.Forms.Button btnTim;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label label8;
+        private Button btnTao;
     }
 }

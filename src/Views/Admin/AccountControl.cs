@@ -50,6 +50,7 @@ namespace BTL_C_.src.Views.Admin
         public void setXoaListener(EventHandler handler) => btnXoa.Click += handler;
         public void setTrangThaiListener(EventHandler handler) => btnTrangThai.Click += handler;
         public void setTimListener(EventHandler handler) => btnTim.Click += handler;
+        public void setTaoListener(EventHandler handler) => btnTao.Click += handler;
         public DataGridView GetDataGridView() => dataGridViewAccount;
         public void resetForm()
         {
@@ -93,6 +94,10 @@ namespace BTL_C_.src.Views.Admin
         public void setStatus(string status)
         {
             btnTrangThai.Text = status;
+        }
+        public Form getForm()
+        {
+            return this.FindForm();
         }
     }
 

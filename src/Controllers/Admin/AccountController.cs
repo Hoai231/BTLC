@@ -103,6 +103,7 @@ namespace BTL_C_.src.Controllers.Admin
             viewAccounts.setXoaListener(deleteAccount);
             viewAccounts.setTrangThaiListener(changeStatus);
             viewAccounts.setTimListener(findAccountBySearch);
+            viewAccounts.setTaoListener(redirectFrmCreateAccount);
         }
         private void OnAccountCellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -209,13 +210,12 @@ namespace BTL_C_.src.Controllers.Admin
                 return;
             }
             DataView dv = ConvertToDataView.ObjectToDataView(account);
-            foreach (DataColumn col in dv.Table.Columns)
-            {
-                Console.WriteLine(col.ColumnName);
-            }
-
             dv.RowFilter = "vai_tro = 'Nhân Viên'";
             viewAccounts.loadDataToGridView(dv);
+        }
+        private void redirectFrmCreateAccount(object sender, EventArgs e)
+        {
+            AppController.startFrmCreateAccount(viewAccounts.getForm());
         }
     }
 }
