@@ -17,6 +17,7 @@ namespace BTL_C_.src.DAO
         protected abstract string GetTableName();
         protected abstract string GetKeyExist();
         protected abstract string getKeyColumn();
+        protected abstract string getColumns();
         protected bool ExecuteNonQuery(string query, Dictionary<string, object> parameters)
         {
             try
@@ -87,7 +88,7 @@ namespace BTL_C_.src.DAO
         protected abstract T MapReaderToObject(SqlDataReader reader);
         public DataTable getAllRecord()
         {
-            string query = "SELECT * FROM " + GetTableName();
+            string query = "SELECT" + getColumns() + "FROM " + GetTableName() + " where deleted=0";
 
             using (SqlConnection conn = ConfigDB.GetConnection())
             {
@@ -103,6 +104,24 @@ namespace BTL_C_.src.DAO
                 catch (Exception ex)
                 {
                     throw new Exception("Đã xảy ra lỗi khi truy vấn!!!", ex);
+                }
+            }
+        }
+        public bool delete(string value)
+        {
+            string sql = "Update " + GetTableName() + " SET deleted=1  where " + getKeyColumn() + " =@value ";
+            using (SqlConnection conn = ConfigDB.GetConnection())
+            using (SqlCommand cmd = new SqlCommand(sql, conn))
+            {
+                try
+                {
+                    cmd.Parameters.AddWithValue("@value", value);
+                    conn.Open();
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Đã xảy ra lỗi khi xóa!!!", ex);
                 }
             }
         }

@@ -100,6 +100,7 @@ namespace BTL_C_.src.Controllers.Admin
             viewAccounts.setAccountCellClickListener(OnAccountCellClick);
             viewAccounts.setLamMoiListener(reset);
             viewAccounts.setLuuListener(updateAccount);
+            viewAccounts.setXoaListener(deleteAccount);
         }
         private void OnAccountCellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -146,6 +147,29 @@ namespace BTL_C_.src.Controllers.Admin
             catch (Exception ex)
             {
                 ErrorUtil.handle(ex, "Đã xảy ra lỗi khi cập nhật!!!");
+            }
+        }
+        private void deleteAccount(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(viewAccounts.getMatk()))
+            {
+                MessageUtil.ShowWarning("Vui lòng chọn tài khoản muốn xóa!");
+                return;
+            }
+            try
+            {
+                if (!accountDao.delete(viewAccounts.getMatk()))
+                {
+                    MessageUtil.ShowWarning("Xóa thất bại!");
+                    return;
+                }
+                MessageUtil.ShowInfo("Đã xóa thành công!");
+                loadDataToGridView();
+            }
+            catch (Exception ex)
+            {
+
+                ErrorUtil.handle(ex, "Đã xảy ra lỗi khi xóa!!!");
             }
         }
     }

@@ -29,6 +29,11 @@ namespace BTL_C_.src.DAO
             return ExecuteNonQuery(query, parameters);
         }
 
+        protected override string getColumns()
+        {
+            throw new NotImplementedException();
+        }
+
         protected override string getKeyColumn()
         {
             throw new NotImplementedException();

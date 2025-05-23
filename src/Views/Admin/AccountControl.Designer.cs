@@ -1,4 +1,6 @@
-﻿namespace BTL_C_.src.Views.Admin
+﻿using System.Windows.Forms;
+
+namespace BTL_C_.src.Views.Admin
 {
     partial class AccountControl
     {

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,6 +44,8 @@ namespace BTL_C_.src.DAO
 
         }
 
+
+
         protected override string getKeyColumn() => "matk";
 
         protected override string GetKeyExist() => "email";
@@ -50,6 +53,7 @@ namespace BTL_C_.src.DAO
 
         protected override string GetTableName() => "tblTaiKhoan";
 
+        protected override string getColumns() => " matk, tendangnhap, email, vaitro, manv, status ";
         protected override AccountModel MapReaderToObject(SqlDataReader reader)
         {
             return new AccountModel(
