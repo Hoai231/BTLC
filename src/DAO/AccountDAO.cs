@@ -66,7 +66,7 @@ namespace BTL_C_.src.DAO
 
         protected override string GetTableName() => "tblTaiKhoan";
 
-        protected override string getColumns() => " matk, tendangnhap, email, vaitro, manv, status ";
+        protected override string getColumns() => " matk, email, tendangnhap, matkhau, vaitro, manv, status ";
         protected override AccountModel MapReaderToObject(SqlDataReader reader)
         {
             return new AccountModel(
@@ -77,7 +77,9 @@ namespace BTL_C_.src.DAO
            reader["vaitro"].ToString(),
            reader["manv"] as string,
            reader["status"].ToString()
+
        );
         }
+
     }
 }

@@ -46,12 +46,12 @@ namespace BTL_C_.src.Views.Admin
             this.label7 = new System.Windows.Forms.Label();
             this.btnTrangThai = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnLamMoi = new System.Windows.Forms.Button();
-            this.btnLuu = new System.Windows.Forms.Button();
-            this.btnXoa = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.btnTim = new System.Windows.Forms.Button();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.btnXoa = new System.Windows.Forms.Button();
+            this.btnLuu = new System.Windows.Forms.Button();
+            this.btnLamMoi = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAccount)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -137,7 +137,7 @@ namespace BTL_C_.src.Views.Admin
             this.label5.ForeColor = System.Drawing.Color.Red;
             this.label5.Location = new System.Drawing.Point(371, 17);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(173, 39);
+            this.label5.Size = new System.Drawing.Size(165, 38);
             this.label5.TabIndex = 9;
             this.label5.Text = "Tài Khoản";
             // 
@@ -190,7 +190,7 @@ namespace BTL_C_.src.Views.Admin
             // panel1
             // 
             this.panel1.Controls.Add(this.btnTim);
-            this.panel1.Controls.Add(this.textBox2);
+            this.panel1.Controls.Add(this.txtSearch);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.btnXoa);
             this.panel1.Controls.Add(this.btnLuu);
@@ -200,32 +200,21 @@ namespace BTL_C_.src.Views.Admin
             this.panel1.Size = new System.Drawing.Size(966, 54);
             this.panel1.TabIndex = 15;
             // 
-            // btnLamMoi
+            // btnTim
             // 
-            this.btnLamMoi.Location = new System.Drawing.Point(61, 11);
-            this.btnLamMoi.Name = "btnLamMoi";
-            this.btnLamMoi.Size = new System.Drawing.Size(117, 34);
-            this.btnLamMoi.TabIndex = 0;
-            this.btnLamMoi.Text = "Làm Mới";
-            this.btnLamMoi.UseVisualStyleBackColor = true;
+            this.btnTim.Location = new System.Drawing.Point(914, 17);
+            this.btnTim.Name = "btnTim";
+            this.btnTim.Size = new System.Drawing.Size(49, 28);
+            this.btnTim.TabIndex = 5;
+            this.btnTim.Text = "Tìm";
+            this.btnTim.UseVisualStyleBackColor = true;
             // 
-            // btnLuu
+            // txtSearch
             // 
-            this.btnLuu.Location = new System.Drawing.Point(220, 11);
-            this.btnLuu.Name = "btnLuu";
-            this.btnLuu.Size = new System.Drawing.Size(112, 34);
-            this.btnLuu.TabIndex = 1;
-            this.btnLuu.Text = "Lưu";
-            this.btnLuu.UseVisualStyleBackColor = true;
-            // 
-            // btnXoa
-            // 
-            this.btnXoa.Location = new System.Drawing.Point(386, 11);
-            this.btnXoa.Name = "btnXoa";
-            this.btnXoa.Size = new System.Drawing.Size(110, 34);
-            this.btnXoa.TabIndex = 2;
-            this.btnXoa.Text = "Xóa";
-            this.btnXoa.UseVisualStyleBackColor = true;
+            this.txtSearch.Location = new System.Drawing.Point(692, 17);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(216, 22);
+            this.txtSearch.TabIndex = 4;
             // 
             // label8
             // 
@@ -236,21 +225,32 @@ namespace BTL_C_.src.Views.Admin
             this.label8.TabIndex = 3;
             this.label8.Text = "Tìm kiếm theo email:";
             // 
-            // textBox2
+            // btnXoa
             // 
-            this.textBox2.Location = new System.Drawing.Point(692, 17);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(216, 22);
-            this.textBox2.TabIndex = 4;
+            this.btnXoa.Location = new System.Drawing.Point(386, 11);
+            this.btnXoa.Name = "btnXoa";
+            this.btnXoa.Size = new System.Drawing.Size(110, 34);
+            this.btnXoa.TabIndex = 2;
+            this.btnXoa.Text = "Xóa";
+            this.btnXoa.UseVisualStyleBackColor = true;
             // 
-            // btnTim
+            // btnLuu
             // 
-            this.btnTim.Location = new System.Drawing.Point(914, 17);
-            this.btnTim.Name = "btnTim";
-            this.btnTim.Size = new System.Drawing.Size(49, 22);
-            this.btnTim.TabIndex = 5;
-            this.btnTim.Text = "Tìm";
-            this.btnTim.UseVisualStyleBackColor = true;
+            this.btnLuu.Location = new System.Drawing.Point(220, 11);
+            this.btnLuu.Name = "btnLuu";
+            this.btnLuu.Size = new System.Drawing.Size(112, 34);
+            this.btnLuu.TabIndex = 1;
+            this.btnLuu.Text = "Lưu";
+            this.btnLuu.UseVisualStyleBackColor = true;
+            // 
+            // btnLamMoi
+            // 
+            this.btnLamMoi.Location = new System.Drawing.Point(61, 11);
+            this.btnLamMoi.Name = "btnLamMoi";
+            this.btnLamMoi.Size = new System.Drawing.Size(117, 34);
+            this.btnLamMoi.TabIndex = 0;
+            this.btnLamMoi.Text = "Làm Mới";
+            this.btnLamMoi.UseVisualStyleBackColor = true;
             // 
             // AccountControl
             // 
@@ -304,7 +304,7 @@ namespace BTL_C_.src.Views.Admin
         private System.Windows.Forms.Button btnLuu;
         private System.Windows.Forms.Button btnLamMoi;
         private System.Windows.Forms.Button btnTim;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label label8;
     }
 }

@@ -56,7 +56,7 @@ namespace BTL_C_.src.DAO
         }
         public T findRecordByField(string field, string value)
         {
-            string query = "Select * from " + GetTableName() + " where " + field + " = @value";
+            string query = "Select " + getColumns() + " from " + GetTableName() + " where " + field + " = @value  and deleted=0";
 
             try
             {
@@ -105,8 +105,11 @@ namespace BTL_C_.src.DAO
                 {
                     throw new Exception("Đã xảy ra lỗi khi truy vấn!!!", ex);
                 }
+
             }
+
         }
+
         public bool delete(string value)
         {
             string sql = "Update " + GetTableName() + " SET deleted=1  where " + getKeyColumn() + " =@value ";

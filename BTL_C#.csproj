@@ -74,6 +74,7 @@
     <Compile Include="src\DAO\EmployeeDAO.cs" />
     <Compile Include="src\Models\AccountModel.cs" />
     <Compile Include="src\Models\EmployeeModel.cs" />
+    <Compile Include="src\Utils\ConvertToDataView.cs" />
     <Compile Include="src\Utils\ErrorUtil.cs" />
     <Compile Include="src\Utils\GenerateIdUtil.cs" />
     <Compile Include="src\Utils\HashPasswordUtil.cs" />

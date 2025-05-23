@@ -102,6 +102,7 @@ namespace BTL_C_.src.Controllers.Admin
             viewAccounts.setLuuListener(updateAccount);
             viewAccounts.setXoaListener(deleteAccount);
             viewAccounts.setTrangThaiListener(changeStatus);
+            viewAccounts.setTimListener(findAccountBySearch);
         }
         private void OnAccountCellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -110,17 +111,18 @@ namespace BTL_C_.src.Controllers.Admin
                 var dgv = viewAccounts.GetDataGridView();
                 var row = dgv.Rows[e.RowIndex];
                 string matk = row.Cells[0].Value.ToString();
-                string tendangnhap = row.Cells[1].Value.ToString();
-                string email = row.Cells[2].Value.ToString();
-                string vaitro = row.Cells[3].Value.ToString();
-                string manv = row.Cells[4].Value.ToString();
-                string status = row.Cells[5].Value.ToString();
+                string email = row.Cells[1].Value.ToString();
+                string tendangnhap = row.Cells[2].Value.ToString();
+                string vaitro = row.Cells[4].Value.ToString();
+                string manv = row.Cells[5].Value.ToString();
+                string status = row.Cells[6].Value.ToString();
                 viewAccounts.setFormData(matk, email, tendangnhap, vaitro, status, manv);
             }
         }
         private void reset(object sender, EventArgs e)
         {
             viewAccounts.resetForm();
+            loadDataToGridView();
         }
 
         private void updateAccount(object sender, EventArgs e)
@@ -197,6 +199,23 @@ namespace BTL_C_.src.Controllers.Admin
             {
                 ErrorUtil.handle(ex, "Đã xảy ra lỗi khi thay đổi trạng thái!!!");
             }
+        }
+        private void findAccountBySearch(object sender, EventArgs e)
+        {
+            AccountModel account = accountDao.findRecordByField("email", viewAccounts.getSearchText());
+            if (account == null)
+            {
+                MessageUtil.ShowInfo("Tài khoản không tồn tại!");
+                return;
+            }
+            DataView dv = ConvertToDataView.ObjectToDataView(account);
+            foreach (DataColumn col in dv.Table.Columns)
+            {
+                Console.WriteLine(col.ColumnName);
+            }
+
+            dv.RowFilter = "vai_tro = 'Nhân Viên'";
+            viewAccounts.loadDataToGridView(dv);
         }
     }
 }

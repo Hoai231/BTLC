@@ -8,13 +8,13 @@ namespace BTL_C_.src.Models
 {
     internal class AccountModel
     {
-        private string ma_tai_khoan;
-        private string email;
-        private string ten_dang_nhap;
-        private string mat_khau;
-        private string vai_tro;
-        private string ma_nhan_vien;
-        private string status;
+        public string ma_tai_khoan { get; set; }
+        public string email { get; set; }
+        public string ten_dang_nhap { get; set; }
+        public string mat_khau { get; set; }
+        public string vai_tro { get; set; }
+        public string ma_nhan_vien { get; set; }
+        public string status { get; set; }
         // Constructor không tham số
         public AccountModel()
         {
