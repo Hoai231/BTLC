@@ -340,6 +340,11 @@
             // donGiaBan
             // 
             this.donGiaBan.Location = new System.Drawing.Point(641, 194);
+            this.donGiaBan.Maximum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            0});
             this.donGiaBan.Name = "donGiaBan";
             this.donGiaBan.Size = new System.Drawing.Size(153, 22);
             this.donGiaBan.TabIndex = 21;
@@ -434,7 +439,7 @@
             this.label16.TabIndex = 31;
             this.label16.Text = "Ảnh";
             // 
-            // ProductControl1
+            // ProductControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -469,7 +474,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "ProductControl1";
+            this.Name = "ProductControl";
             this.Size = new System.Drawing.Size(972, 536);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProduct)).EndInit();
             this.panel1.ResumeLayout(false);

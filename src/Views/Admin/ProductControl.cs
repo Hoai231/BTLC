@@ -16,6 +16,8 @@ namespace BTL_C_.src.Views.Admin
         {
             InitializeComponent();
         }
+        public void setLamMoiListener(EventHandler handler) => btnLamMoi.Click += handler;
+        public void setProductCellClickListener(DataGridViewCellEventHandler handler) => dataGridViewProduct.CellClick += handler;
 
         public void loadDataToGridView(DataView dv)
         {
@@ -40,6 +42,121 @@ namespace BTL_C_.src.Views.Admin
 
             dataGridViewProduct.ReadOnly = true;
             dataGridViewProduct.AllowUserToAddRows = false;
+        }
+        public void resetForm()
+        {
+            txtMaSanPham.Text = "";
+            txtTenSanPham.Text = "";
+            txtAnh.Text = "";
+            txtSearch.Text = "";
+            cmbChatLieu.SelectedItem = "";
+            cmbCo.SelectedItem = "";
+            cmbDoiTuong.SelectedItem = "";
+            cmbMau.SelectedItem = "";
+            cmbMua.SelectedItem = "";
+            cmbNoiSanXuat.SelectedItem = "";
+            cmbTheLoai.SelectedItem = "";
+            cmbTrangThai.SelectedItem = "";
+        }
+        public void setForm(string masanpham, string tensanpham, string theloai, string chatlieu, string mau, string dt, string mua, string nsx, string co, int sltonkho, float dongianhap, float dongiaban, string anh, string trangthai)
+        {
+            txtMaSanPham.Text = masanpham ?? "";
+            txtTenSanPham.Text = tensanpham ?? "";
+            txtAnh.Text = anh ?? "";
+            slTonKho.Value = sltonkho;
+            donGiaNhap.Value = (decimal)dongianhap;
+            donGiaBan.Value = (decimal)dongiaban;
+            cmbChatLieu.SelectedItem = chatlieu ?? "";
+            cmbCo.SelectedItem = co ?? "";
+            cmbDoiTuong.SelectedItem = dt ?? "";
+            cmbMau.SelectedItem = mau ?? "";
+            cmbMua.SelectedItem = mua ?? "";
+            cmbNoiSanXuat.SelectedItem = nsx ?? "";
+            cmbTheLoai.SelectedItem = theloai ?? "";
+            cmbTrangThai.SelectedItem = trangthai ?? "";
+
+            dataGridViewProduct.ClearSelection();
+
+        }
+        public DataGridView GetDataGridViewProduct()
+        {
+            return dataGridViewProduct;
+        }
+        public ComboBox getCmbCo()
+        {
+            return cmbCo;
+        }
+        public ComboBox getCmbChatLieu()
+        {
+            return cmbChatLieu;
+        }
+        public ComboBox getCmbTheLoai()
+        {
+            return cmbTheLoai;
+        }
+        public ComboBox getCmbMua()
+        {
+            return cmbMua;
+        }
+        public ComboBox getCmbMau()
+        {
+            return cmbMau;
+        }
+        public ComboBox getCmbDoiTuong()
+        {
+            return cmbDoiTuong;
+        }
+        public ComboBox getCmbNoiSanXuat()
+        {
+            return cmbNoiSanXuat;
+        }
+        public string getTenSanPham()
+        {
+            return txtTenSanPham.Text.Trim();
+        }
+        public string getMaTheLoai()
+        {
+            return cmbTheLoai.SelectedValue.ToString();
+        }
+        public string getMaChatLieu()
+        {
+            return cmbChatLieu.SelectedValue.ToString();
+        }
+        public string getMaMau()
+        {
+            return cmbMau.SelectedValue.ToString();
+        }
+        public string getMaMua()
+        {
+            return cmbMua.SelectedValue.ToString();
+        }
+        public string getMaCo()
+        {
+            return cmbCo.SelectedValue.ToString();
+        }
+        public string getMaDoiTuong()
+        {
+            return cmbDoiTuong.SelectedValue.ToString();
+        }
+        public string getMaNoiSanXuat()
+        {
+            return cmbNoiSanXuat.SelectedValue.ToString();
+        }
+        public string getTrangThai()
+        {
+            return cmbTrangThai.SelectedItem.ToString();
+        }
+        public int getSoLuongTonKho()
+        {
+            return (int)slTonKho.Value;
+        }
+        public float getDonGiaNhap()
+        {
+            return (float)donGiaNhap.Value;
+        }
+        public float getDonGiaBan()
+        {
+            return (float)donGiaBan.Value;
         }
     }
 }

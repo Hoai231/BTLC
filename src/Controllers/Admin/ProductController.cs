@@ -9,6 +9,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace BTL_C_.src.Controllers.Admin
 {
@@ -21,13 +22,7 @@ namespace BTL_C_.src.Controllers.Admin
         {
             this.viewFrmCreateProduct = viewFrmCreateProduct;
             productDao = new ProductDAO();
-            CategoryDAO.fillCategoryCombo(viewFrmCreateProduct.getCmbTheLoai());
-            SizeDAO.fillSizeCombo(viewFrmCreateProduct.getCmbCo());
-            MadeInDAO.fillMadeInCombo(viewFrmCreateProduct.getCmbNoiSanXuat());
-            MaterialDAO.fillMaterialCombo(viewFrmCreateProduct.getCmbChatLieu());
-            SeasonDAO.fillSeasonCombo(viewFrmCreateProduct.getCmbMua());
-            ColorDAO.fillColorCombo(viewFrmCreateProduct.getCmbMau());
-            DemographicDAO.fillDemographicCombo(viewFrmCreateProduct.getCmbDoiTuong());
+            findDataToCmb();
             viewFrmCreateProduct.setTaoListener(insertProduct);
         }
         public ProductController(ProductControl viewProductControl)
@@ -35,6 +30,22 @@ namespace BTL_C_.src.Controllers.Admin
             this.viewProductControl = viewProductControl;
             productDao = new ProductDAO();
             loadDataToGridView();
+            findDataToCmb();
+            setupEventListeners();
+        }
+        private void setupEventListeners()
+        {
+            viewProductControl.setProductCellClickListener(OnProductCellClick);
+        }
+        private void findDataToCmb()
+        {
+            CategoryDAO.fillCategoryCombo(viewProductControl.getCmbTheLoai());
+            SizeDAO.fillSizeCombo(viewProductControl.getCmbCo());
+            MadeInDAO.fillMadeInCombo(viewProductControl.getCmbNoiSanXuat());
+            MaterialDAO.fillMaterialCombo(viewProductControl.getCmbChatLieu());
+            SeasonDAO.fillSeasonCombo(viewProductControl.getCmbMua());
+            ColorDAO.fillColorCombo(viewProductControl.getCmbMau());
+            DemographicDAO.fillDemographicCombo(viewProductControl.getCmbDoiTuong());
         }
         private void insertProduct(object sender, EventArgs e)
         {
@@ -74,6 +85,43 @@ namespace BTL_C_.src.Controllers.Admin
                 ErrorUtil.handle(ex, "Đã xảy ra lỗi khi tạo!!!");
             }
 
+        }
+        private void OnProductCellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                var dgv = viewProductControl.GetDataGridViewProduct();
+                var row = dgv.Rows[e.RowIndex];
+                string masanpham = row.Cells[0].Value?.ToString() ?? "";
+                string tensanpham = row.Cells[1].Value?.ToString() ?? "";
+                string theloai = row.Cells[2].Value?.ToString() ?? "";
+                string mau = row.Cells[3].Value?.ToString() ?? "";
+                string nsx = row.Cells[4].Value?.ToString() ?? "";
+                string dt = row.Cells[5].Value?.ToString() ?? "";
+                string mua = row.Cells[6].Value?.ToString() ?? "";
+                string cl = row.Cells[7].Value?.ToString() ?? "";
+                string co = row.Cells[8].Value?.ToString() ?? "";
+                int sltonkho = 1; // Default value
+                if (row.Cells[9].Value != null && int.TryParse(row.Cells[10].Value.ToString(), out int result))
+                {
+                    sltonkho = result;
+                }
+                string anh = row.Cells[10].Value?.ToString() ?? "";
+                float dongianhap;
+                if (!float.TryParse(row.Cells[11].Value?.ToString(), out dongianhap))
+                {
+                    dongianhap = 1f; // giá trị mặc định nếu lỗi
+                }
+                float dongiaban;
+                if (!float.TryParse(row.Cells[12].Value?.ToString(), out dongiaban))
+                {
+                    dongiaban = 1f;
+                }
+
+
+                string trangthai = row.Cells[13].Value?.ToString() ?? "";
+                viewProductControl.setForm(masanpham, tensanpham, theloai, cl, mau, dt, mua, nsx, co, sltonkho, dongianhap, dongiaban, anh, trangthai);
+            }
         }
         private void loadDataToGridView()
         {// Giả sử bạn đã có DataTable chứa dữ liệu tài khoản
