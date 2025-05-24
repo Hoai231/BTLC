@@ -46,13 +46,13 @@ namespace BTL_C_.src.Views.Admin
             this.label7 = new System.Windows.Forms.Label();
             this.btnTrangThai = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnTao = new System.Windows.Forms.Button();
             this.btnTim = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.btnXoa = new System.Windows.Forms.Button();
             this.btnLuu = new System.Windows.Forms.Button();
             this.btnLamMoi = new System.Windows.Forms.Button();
-            this.btnTao = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAccount)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -202,6 +202,15 @@ namespace BTL_C_.src.Views.Admin
             this.panel1.Size = new System.Drawing.Size(966, 54);
             this.panel1.TabIndex = 15;
             // 
+            // btnTao
+            // 
+            this.btnTao.Location = new System.Drawing.Point(458, 11);
+            this.btnTao.Name = "btnTao";
+            this.btnTao.Size = new System.Drawing.Size(97, 34);
+            this.btnTao.TabIndex = 6;
+            this.btnTao.Text = "Tạo";
+            this.btnTao.UseVisualStyleBackColor = true;
+            // 
             // btnTim
             // 
             this.btnTim.Location = new System.Drawing.Point(914, 17);
@@ -253,15 +262,6 @@ namespace BTL_C_.src.Views.Admin
             this.btnLamMoi.TabIndex = 0;
             this.btnLamMoi.Text = "Làm Mới";
             this.btnLamMoi.UseVisualStyleBackColor = true;
-            // 
-            // btnTao
-            // 
-            this.btnTao.Location = new System.Drawing.Point(458, 11);
-            this.btnTao.Name = "btnTao";
-            this.btnTao.Size = new System.Drawing.Size(97, 34);
-            this.btnTao.TabIndex = 6;
-            this.btnTao.Text = "Tạo";
-            this.btnTao.UseVisualStyleBackColor = true;
             // 
             // AccountControl
             // 

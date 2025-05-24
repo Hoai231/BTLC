@@ -35,10 +35,7 @@ namespace BTL_C_.src.DAO
 
             return ExecuteNonQuery(query, parameters);
         }
-        protected override string getColumns()
-        {
-            throw new NotImplementedException();
-        }
+        protected override string getColumns() => " maquanao, tenquanao, tl.tentl, m.tenmau, nsx.tennsx, dt.tendt, mua.tenmua, cl.tencl, co.tenco, sltonkho, anh, dongianhap, dongiaban, trangthai ";
 
         protected override string getKeyColumn()
         {
@@ -50,10 +47,7 @@ namespace BTL_C_.src.DAO
             throw new NotImplementedException();
         }
 
-        protected override string GetTableName()
-        {
-            throw new NotImplementedException();
-        }
+        protected override string GetTableName() => " tblSanPham sp LEFT JOIN tblTheLoai tl ON sp.matheloai = tl.matheloai LEFT JOIN tblMau m ON sp.mamau = m.mamau LEFT JOIN tblMua mua ON sp.mamua = mua.mamua LEFT JOIN tblDoiTuong dt ON sp.madt = dt.madt LEFT JOIN tblNoiSanXuat nsx ON sp.mansx = nsx.mansx LEFT JOIN tblChatLieu cl ON sp.macl = cl.macl LEFT JOIN tblCo co ON sp.maco = co.maco ";
 
         protected override ProductModel MapReaderToObject(SqlDataReader reader)
         {

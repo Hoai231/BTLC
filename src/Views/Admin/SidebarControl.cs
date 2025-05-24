@@ -17,5 +17,6 @@ namespace BTL_C_.src.Views.Admin
             InitializeComponent();
         }
         public void setTaiKhoanListener(EventHandler handler) => btnTaiKhoan.Click += handler;
+        public void setSanPhamListener(EventHandler handler) => btnSanPham.Click += handler;
     }
 }

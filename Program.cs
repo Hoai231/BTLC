@@ -23,13 +23,14 @@ namespace BTL_C_
             //FrmCreateAccount view = new FrmCreateAccount();
             //new AccountController(view);
             //FrmLogin view = new FrmLogin();
-            //Home view = new Home();
+            Home view = new Home();
             //new LoginController(view);
-            //new HomeController(view);
-            FrmCreateProduct view = new FrmCreateProduct();
+
+            //FrmCreateProduct view = new FrmCreateProduct();
             view.Load += (s, e) =>
             {
-                new ProductController(view);
+                //new ProductController(view);
+                new HomeController(view);
             };
             Application.Run(view);
         }

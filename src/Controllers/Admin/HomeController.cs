@@ -18,12 +18,19 @@ namespace BTL_C_.src.Controllers.Admin
         private void setupEventListeners()
         {
             viewHome.getSidebar().setTaiKhoanListener(initViewWithControllerAccount);
+            viewHome.getSidebar().setSanPhamListener(initViewWithControllerProduct);
         }
         private void initViewWithControllerAccount(object sender, EventArgs e)
         {
             AccountControl accountControl = new AccountControl();
             AccountController accountController = new AccountController(accountControl);
-            viewHome.LoadControl(accountControl);
+            viewHome.loadControl(accountControl);
+        }
+        private void initViewWithControllerProduct(object sender, EventArgs e)
+        {
+            ProductControl productControl = new ProductControl();
+            ProductController productController = new ProductController(productControl);
+            viewHome.loadControl(productControl);
         }
     }
 }

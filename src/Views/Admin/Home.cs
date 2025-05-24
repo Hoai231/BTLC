@@ -33,7 +33,7 @@ namespace BTL_C_.src.Views.Admin
             panelMain.BringToFront(); // Đảm bảo panelMain không che sidebar
         }
 
-        public void LoadControl(UserControl uc)
+        public void loadControl(UserControl uc)
         {
             panelMain.Controls.Clear();
             uc.Dock = DockStyle.Fill;

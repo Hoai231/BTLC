@@ -5,6 +5,7 @@ using BTL_C_.src.Validators;
 using BTL_C_.src.Views.Admin;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ namespace BTL_C_.src.Controllers.Admin
     internal class ProductController
     {
         private FrmCreateProduct viewFrmCreateProduct;
+        private ProductControl viewProductControl;
         private ProductDAO productDao;
         public ProductController(FrmCreateProduct viewFrmCreateProduct)
         {
@@ -27,6 +29,12 @@ namespace BTL_C_.src.Controllers.Admin
             ColorDAO.fillColorCombo(viewFrmCreateProduct.getCmbMau());
             DemographicDAO.fillDemographicCombo(viewFrmCreateProduct.getCmbDoiTuong());
             viewFrmCreateProduct.setTaoListener(insertProduct);
+        }
+        public ProductController(ProductControl viewProductControl)
+        {
+            this.viewProductControl = viewProductControl;
+            productDao = new ProductDAO();
+            loadDataToGridView();
         }
         private void insertProduct(object sender, EventArgs e)
         {
@@ -65,6 +73,15 @@ namespace BTL_C_.src.Controllers.Admin
             {
                 ErrorUtil.handle(ex, "Đã xảy ra lỗi khi tạo!!!");
             }
+
+        }
+        private void loadDataToGridView()
+        {// Giả sử bạn đã có DataTable chứa dữ liệu tài khoản
+            DataTable allAccounts = productDao.getAllRecord();
+
+            // Tạo DataView từ DataTable và lọc theo vai trò
+            DataView dv = new DataView(allAccounts);
+            viewProductControl.loadDataToGridView(dv);
 
         }
     }
