@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BTL_C_.src.Validators
 {
-    internal class ImputValidate
+    internal class InputValidate
     {
         public static bool inputLoginValidate(string email, string password)
         {

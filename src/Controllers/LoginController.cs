@@ -27,7 +27,7 @@ namespace BTL_C_.src.Controllers
         {
             try
             {
-                if (!ImputValidate.inputLoginValidate(viewLogin.getEmail(), viewLogin.getPassword()))
+                if (!InputValidate.inputLoginValidate(viewLogin.getEmail(), viewLogin.getPassword()))
                 {
                     return;
                 }

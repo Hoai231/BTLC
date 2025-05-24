@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BTL_C_.src.Utils;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,6 +18,9 @@ namespace BTL_C_.src.Views.Admin
             InitializeComponent();
         }
         public void setLamMoiListener(EventHandler handler) => btnLamMoi.Click += handler;
+        public void setLuuListener(EventHandler handler) => btnLuu.Click += handler;
+        public void setXoaListener(EventHandler handler) => btnXoa.Click += handler;
+        public void setTaoListener(EventHandler handler) => btnTao.Click += handler;
         public void setProductCellClickListener(DataGridViewCellEventHandler handler) => dataGridViewProduct.CellClick += handler;
 
         public void loadDataToGridView(DataView dv)
@@ -57,6 +61,9 @@ namespace BTL_C_.src.Views.Admin
             cmbNoiSanXuat.SelectedItem = "";
             cmbTheLoai.SelectedItem = "";
             cmbTrangThai.SelectedItem = "";
+            donGiaNhap.Value = 1;
+            donGiaBan.Value = 1;
+            slTonKho.Value = 1;
         }
         public void setForm(string masanpham, string tensanpham, string theloai, string chatlieu, string mau, string dt, string mua, string nsx, string co, int sltonkho, float dongianhap, float dongiaban, string anh, string trangthai)
         {
@@ -114,6 +121,10 @@ namespace BTL_C_.src.Views.Admin
         {
             return txtTenSanPham.Text.Trim();
         }
+        public string getMaSanPham()
+        {
+            return txtMaSanPham.Text.Trim();
+        }
         public string getMaTheLoai()
         {
             return cmbTheLoai.SelectedValue.ToString();
@@ -157,6 +168,14 @@ namespace BTL_C_.src.Views.Admin
         public float getDonGiaBan()
         {
             return (float)donGiaBan.Value;
+        }
+        public string getAnh()
+        {
+            return txtAnh.Text.Trim();
+        }
+        public Form getForm()
+        {
+            return this.FindForm();
         }
     }
 }

@@ -22,7 +22,7 @@ namespace BTL_C_.src.Controllers.Admin
         {
             this.viewFrmCreateProduct = viewFrmCreateProduct;
             productDao = new ProductDAO();
-            findDataToCmb();
+            findDataToCmbCreateProduct();
             viewFrmCreateProduct.setTaoListener(insertProduct);
         }
         public ProductController(ProductControl viewProductControl)
@@ -30,14 +30,29 @@ namespace BTL_C_.src.Controllers.Admin
             this.viewProductControl = viewProductControl;
             productDao = new ProductDAO();
             loadDataToGridView();
-            findDataToCmb();
+            findDataToCmbProductControl();
             setupEventListeners();
         }
         private void setupEventListeners()
         {
             viewProductControl.setProductCellClickListener(OnProductCellClick);
+            viewProductControl.setLamMoiListener(reset);
+            viewProductControl.setLuuListener(updateProduct);
+            viewProductControl.setXoaListener(deleteProduct);
+            viewProductControl.setTaoListener(redirectFrmCreateProduct);
         }
-        private void findDataToCmb()
+        private void findDataToCmbCreateProduct()
+        {
+            CategoryDAO.fillCategoryCombo(viewFrmCreateProduct.getCmbTheLoai());
+            SizeDAO.fillSizeCombo(viewFrmCreateProduct.getCmbCo());
+            MadeInDAO.fillMadeInCombo(viewFrmCreateProduct.getCmbNoiSanXuat());
+            MaterialDAO.fillMaterialCombo(viewFrmCreateProduct.getCmbChatLieu());
+            SeasonDAO.fillSeasonCombo(viewFrmCreateProduct.getCmbMua());
+            ColorDAO.fillColorCombo(viewFrmCreateProduct.getCmbMau());
+            DemographicDAO.fillDemographicCombo(viewFrmCreateProduct.getCmbDoiTuong());
+        }
+
+        private void findDataToCmbProductControl()
         {
             CategoryDAO.fillCategoryCombo(viewProductControl.getCmbTheLoai());
             SizeDAO.fillSizeCombo(viewProductControl.getCmbCo());
@@ -50,7 +65,7 @@ namespace BTL_C_.src.Controllers.Admin
         private void insertProduct(object sender, EventArgs e)
         {
             string maquanao = GenerateIdUtil.GenerateId("PRODUCT");
-            if (!ImputValidate.inputCreateProductValidate(maquanao, viewFrmCreateProduct.getTenSanPham()))
+            if (!InputValidate.inputCreateProductValidate(maquanao, viewFrmCreateProduct.getTenSanPham()))
             {
                 return;
             }
@@ -131,6 +146,65 @@ namespace BTL_C_.src.Controllers.Admin
             DataView dv = new DataView(allAccounts);
             viewProductControl.loadDataToGridView(dv);
 
+        }
+        private void reset(object sender, EventArgs e)
+        {
+            viewProductControl.resetForm();
+            loadDataToGridView();
+        }
+        private void updateProduct(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(viewProductControl.getMaSanPham()))
+            {
+                MessageUtil.ShowWarning("Vui lòng chọn sản phẩm muốn sửa!");
+                return;
+            }
+            if (!InputValidate.inputCreateProductValidate(viewProductControl.getMaSanPham(), viewProductControl.getTenSanPham()))
+            {
+                return;
+            }
+
+            try
+            {
+                ProductModel product = new ProductModel(viewProductControl.getMaSanPham(), viewProductControl.getTenSanPham(), viewProductControl.getMaCo(), viewProductControl.getMaMau(), viewProductControl.getMaMua(), viewProductControl.getMaDoiTuong(), viewProductControl.getMaNoiSanXuat(), viewProductControl.getMaTheLoai(), viewProductControl.getMaChatLieu(), viewProductControl.getSoLuongTonKho(), viewProductControl.getAnh(), viewProductControl.getDonGiaNhap(), viewProductControl.getDonGiaBan(), viewProductControl.getTrangThai());
+                if (!productDao.update(product))
+                {
+                    MessageUtil.ShowError("Cập nhật không thành công!!!");
+                    return;
+                }
+                MessageUtil.ShowInfo("Cập nhật thành công!");
+                loadDataToGridView();
+            }
+            catch (Exception ex)
+            {
+                ErrorUtil.handle(ex, "Đã xảy ra lỗi khi cập nhật!!!");
+            }
+        }
+        private void deleteProduct(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(viewProductControl.getMaSanPham()))
+                {
+                    MessageUtil.ShowWarning("Vui lòng chọn sản phẩm cần xóa!");
+                    return;
+                }
+                if (!productDao.delete(viewProductControl.getMaSanPham()))
+                {
+                    MessageUtil.ShowError("Xóa không thành công!!!");
+                    return;
+                }
+                MessageUtil.ShowInfo("Xóa thành công!");
+                reset(sender, e);
+            }
+            catch (Exception ex)
+            {
+                ErrorUtil.handle(ex, "Đã xảy ra khi xóa!!!");
+            }
+        }
+        private void redirectFrmCreateProduct(object sender, EventArgs e)
+        {
+            AppController.startFrmCreateProduct(viewProductControl.getForm());
         }
     }
 }

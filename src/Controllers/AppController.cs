@@ -24,5 +24,12 @@ namespace BTL_C_.src.Controllers
             frmCreateAccount.Show();
             previousForm.Hide();
         }
+        public static void startFrmCreateProduct(Form previousForm)
+        {
+            FrmCreateProduct frmCreateProduct = new FrmCreateProduct();
+            ProductController productController = new ProductController(frmCreateProduct);
+            frmCreateProduct.Show();
+            previousForm.Hide();
+        }
     }
 }

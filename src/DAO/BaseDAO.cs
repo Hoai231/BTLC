@@ -19,6 +19,7 @@ namespace BTL_C_.src.DAO
         protected abstract string GetKeyExist();
         protected abstract string getKeyColumn();
         protected abstract string getColumns();
+        protected virtual string GetAlias() => null;
         protected bool ExecuteNonQuery(string query, Dictionary<string, object> parameters)
         {
             try
@@ -113,7 +114,16 @@ namespace BTL_C_.src.DAO
 
         public bool delete(string value)
         {
-            string sql = "Update " + GetTableName() + " SET deleted=1  where " + getKeyColumn() + " =@value ";
+            string sql;
+            if (!string.IsNullOrWhiteSpace(GetAlias()))
+            {
+                sql = $"UPDATE {GetAlias()} SET deleted = 1 FROM {GetTableName()} WHERE {getKeyColumn()} = @value";
+            }
+            else
+            {
+                sql = $"UPDATE {GetTableName()} SET deleted = 1 WHERE {getKeyColumn()} = @value";
+            }
+
             using (SqlConnection conn = ConfigDB.GetConnection())
             using (SqlCommand cmd = new SqlCommand(sql, conn))
             {

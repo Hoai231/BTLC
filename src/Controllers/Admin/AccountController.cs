@@ -42,7 +42,7 @@ namespace BTL_C_.src.Controllers.Admin
             try
             {
 
-                if (!ImputValidate.inputCreateAccountValidate(viewFrmCreateAccount.getEmail(), viewFrmCreateAccount.getTenDangNhap(), viewFrmCreateAccount.getPassword(), viewFrmCreateAccount.getVaiTro()))
+                if (!InputValidate.inputCreateAccountValidate(viewFrmCreateAccount.getEmail(), viewFrmCreateAccount.getTenDangNhap(), viewFrmCreateAccount.getPassword(), viewFrmCreateAccount.getVaiTro()))
                 {
                     return;
                 }
@@ -135,7 +135,7 @@ namespace BTL_C_.src.Controllers.Admin
                     MessageUtil.ShowWarning("Vui lòng chọn tài khoản muốn sửa!");
                     return;
                 }
-                if (!ImputValidate.inputUpdateAccountValidate(viewAccounts.getEmail(), viewAccounts.getTenDangNhap(), viewAccounts.getStatus(), viewAccounts.getVaiTro()))
+                if (!InputValidate.inputUpdateAccountValidate(viewAccounts.getEmail(), viewAccounts.getTenDangNhap(), viewAccounts.getStatus(), viewAccounts.getVaiTro()))
                 {
                     return;
                 }
