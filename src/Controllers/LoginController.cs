@@ -37,13 +37,13 @@ namespace BTL_C_.src.Controllers
                     MessageUtil.ShowInfo("Tài khoản không tồn tại!");
                     return;
                 }
-                if (!HashPasswordUtil.checkPassword(viewLogin.getPassword(), account.getMat_khau()))
+                if (!HashPasswordUtil.checkPassword(viewLogin.getPassword(), account.mat_khau))
                 {
                     MessageUtil.ShowWarning("Mật khẩu không khớp!");
                     return;
                 }
                 MessageUtil.ShowInfo("Đăng nhập thành công!");
-                if (account.getVai_tro() == "Admin")
+                if (account.vai_tro == "Admin")
                 {
                     AppController.startDashBoard(viewLogin.getForm());
                 }

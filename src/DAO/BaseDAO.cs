@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -128,5 +129,20 @@ namespace BTL_C_.src.DAO
                 }
             }
         }
+        public static void fillDataToCombo(ComboBox cmb, string sql, string value, string display)
+        {
+            using (SqlConnection conn = ConfigDB.GetConnection())
+            {
+                conn.Open();
+                SqlDataAdapter adapter = new SqlDataAdapter(sql, conn);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                cmb.DataSource = dt;
+                cmb.ValueMember = value;
+                cmb.DisplayMember = display;
+            }
+
+        }
+
     }
 }

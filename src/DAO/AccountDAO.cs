@@ -20,12 +20,12 @@ namespace BTL_C_.src.DAO
 
             var parameters = new Dictionary<string, object>
         {
-            {"@ma", acc.getMa_tai_khoan()},
-            {"@email", acc.getEmail()},
-            {"@ten", acc.getTen_dang_nhap()},
-            {"@matkhau", acc.getMat_khau()},
-            {"@vaitro", acc.getVai_tro()},
-            {"@manv", acc.getMa_nhan_vien()}
+            {"@ma", acc.ma_tai_khoan},
+            {"@email", acc.email},
+            {"@ten", acc.ten_dang_nhap},
+            {"@matkhau", acc.mat_khau},
+            {"@vaitro", acc.vai_tro},
+            {"@manv", acc.ma_nhan_vien}
         };
 
             return ExecuteNonQuery(query, parameters);
@@ -35,11 +35,11 @@ namespace BTL_C_.src.DAO
             string query = "UPDATE tblTaiKhoan SET email = @email, tendangnhap = @ten, vaitro = @vaitro, status = @status where matk = @matk ";
             var parameters = new Dictionary<string, object>
             {
-                {"@email", acc.getEmail() },
-                {"@ten", acc.getTen_dang_nhap() },
-                {"@vaitro", acc.getVai_tro() },
-                {"@status", acc.getStatus() },
-                {"@matk", acc.getMa_tai_khoan() }
+                {"@email", acc.email },
+                {"@ten", acc.ten_dang_nhap },
+                {"@vaitro", acc.vai_tro },
+                {"@status", acc.status },
+                {"@matk", acc.ma_tai_khoan }
             };
             return ExecuteNonQuery(query, parameters);
 
