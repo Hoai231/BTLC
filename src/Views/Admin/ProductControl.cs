@@ -21,6 +21,7 @@ namespace BTL_C_.src.Views.Admin
         public void setLuuListener(EventHandler handler) => btnLuu.Click += handler;
         public void setXoaListener(EventHandler handler) => btnXoa.Click += handler;
         public void setTaoListener(EventHandler handler) => btnTao.Click += handler;
+        public void setTimListener(EventHandler handler) => btnTim.Click += handler;
         public void setProductCellClickListener(DataGridViewCellEventHandler handler) => dataGridViewProduct.CellClick += handler;
 
         public void loadDataToGridView(DataView dv)
@@ -177,5 +178,11 @@ namespace BTL_C_.src.Views.Admin
         {
             return this.FindForm();
         }
+        public string getTextSearch()
+        {
+            return txtSearch.Text.Trim();
+        }
+
+
     }
 }

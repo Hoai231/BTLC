@@ -80,5 +80,7 @@ namespace BTL_C_.src.DAO
         {
             throw new NotImplementedException();
         }
+
+        protected override string getName() => "sp.tenquanao";
     }
 }

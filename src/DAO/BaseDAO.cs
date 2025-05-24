@@ -19,6 +19,7 @@ namespace BTL_C_.src.DAO
         protected abstract string GetKeyExist();
         protected abstract string getKeyColumn();
         protected abstract string getColumns();
+        protected virtual string getName() => null;
         protected virtual string GetAlias() => null;
         protected bool ExecuteNonQuery(string query, Dictionary<string, object> parameters)
         {
@@ -110,6 +111,29 @@ namespace BTL_C_.src.DAO
 
             }
 
+        }
+        public DataTable findRecordsByName(string value)
+        {
+            string query = "Select " + getColumns() + " From " + GetTableName() + " where deleted=0 and " + getName() + " Like @value  ";
+            using (SqlConnection conn = ConfigDB.GetConnection())
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                try
+                {
+                    cmd.Parameters.AddWithValue("@value", "%" + value + "%");
+                    conn.Open();
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    return dt;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Đã xảy ra lỗi khi truy vấn!!!", ex);
+                }
+
+            }
         }
 
         public bool delete(string value)

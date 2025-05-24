@@ -212,16 +212,16 @@
             // 
             // btnTim
             // 
-            this.btnTim.Location = new System.Drawing.Point(918, 13);
+            this.btnTim.Location = new System.Drawing.Point(911, 13);
             this.btnTim.Name = "btnTim";
-            this.btnTim.Size = new System.Drawing.Size(41, 23);
+            this.btnTim.Size = new System.Drawing.Size(52, 23);
             this.btnTim.TabIndex = 6;
             this.btnTim.Text = "Tìm";
             this.btnTim.UseVisualStyleBackColor = true;
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(684, 13);
+            this.txtSearch.Location = new System.Drawing.Point(677, 14);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(228, 22);
             this.txtSearch.TabIndex = 5;
@@ -229,7 +229,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(533, 16);
+            this.label8.Location = new System.Drawing.Point(523, 16);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(145, 16);
             this.label8.TabIndex = 4;

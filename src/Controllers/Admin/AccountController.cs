@@ -168,7 +168,7 @@ namespace BTL_C_.src.Controllers.Admin
                     return;
                 }
                 MessageUtil.ShowInfo("Đã xóa thành công!");
-                loadDataToGridView();
+                reset(sender, e);
             }
             catch (Exception ex)
             {

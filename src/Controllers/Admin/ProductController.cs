@@ -40,6 +40,7 @@ namespace BTL_C_.src.Controllers.Admin
             viewProductControl.setLuuListener(updateProduct);
             viewProductControl.setXoaListener(deleteProduct);
             viewProductControl.setTaoListener(redirectFrmCreateProduct);
+            viewProductControl.setTimListener(findRecordsBySearch);
         }
         private void findDataToCmbCreateProduct()
         {
@@ -200,6 +201,18 @@ namespace BTL_C_.src.Controllers.Admin
             catch (Exception ex)
             {
                 ErrorUtil.handle(ex, "Đã xảy ra khi xóa!!!");
+            }
+        }
+        private void findRecordsBySearch(object sender, EventArgs e)
+        {
+            try
+            {
+                DataView dv = new DataView(productDao.findRecordsByName(viewProductControl.getTextSearch()));
+                viewProductControl.loadDataToGridView(dv);
+            }
+            catch (Exception ex)
+            {
+                ErrorUtil.handle(ex, "Đã xảy ra lỗi khi tìm kiếm!!!");
             }
         }
         private void redirectFrmCreateProduct(object sender, EventArgs e)
