@@ -1,4 +1,5 @@
 ﻿using BTL_C_.src.Controllers.Admin;
+using BTL_C_.src.Views;
 using BTL_C_.src.Views.Admin;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,13 @@ namespace BTL_C_.src.Controllers
             FrmCreateProduct frmCreateProduct = new FrmCreateProduct();
             ProductController productController = new ProductController(frmCreateProduct);
             frmCreateProduct.Show();
+            previousForm.Hide();
+        }
+        public static void startFrmLogin(Form previousForm)
+        {
+            FrmLogin frmLogin = new FrmLogin();
+            LoginController loginController = new LoginController(frmLogin);
+            frmLogin.Show();
             previousForm.Hide();
         }
     }

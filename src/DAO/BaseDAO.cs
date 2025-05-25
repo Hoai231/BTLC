@@ -125,7 +125,7 @@ namespace BTL_C_.src.DAO
 
                     SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
-                    adapter.Fill(dt);
+                    adapter.Fill(dt);//Thực thi SELECT, nhận kết quả từ DB
                     return dt;
                 }
                 catch (Exception ex)

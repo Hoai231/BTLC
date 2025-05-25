@@ -1,4 +1,5 @@
-﻿using BTL_C_.src.Views.Admin;
+﻿using BTL_C_.src.Utils;
+using BTL_C_.src.Views.Admin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,8 @@ namespace BTL_C_.src.Controllers.Admin
         {
             viewHome.getSidebar().setTaiKhoanListener(initViewWithControllerAccount);
             viewHome.getSidebar().setSanPhamListener(initViewWithControllerProduct);
+            viewHome.getSidebar().setDangXuatListener(logout);
+
         }
         private void initViewWithControllerAccount(object sender, EventArgs e)
         {
@@ -31,6 +34,12 @@ namespace BTL_C_.src.Controllers.Admin
             ProductControl productControl = new ProductControl();
             ProductController productController = new ProductController(productControl);
             viewHome.loadControl(productControl);
+        }
+        private void logout(object sender, EventArgs e)
+        {
+            if (!MessageUtil.Confirm("Bạn có muốn đăng xuất?"))
+                return;
+            AppController.startFrmLogin(viewHome.getForm());
         }
     }
 }

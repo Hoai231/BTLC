@@ -43,5 +43,9 @@ namespace BTL_C_.src.Views.Admin
         {
             return sidebar;
         }
+        public Form getForm()
+        {
+            return this;
+        }
     }
 }
