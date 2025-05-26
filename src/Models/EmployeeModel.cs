@@ -1,10 +1,12 @@
-﻿namespace BTL_C_.src.Models
+﻿using System;
+
+namespace BTL_C_.src.Models
 {
   internal class EmployeeModel
   {
     public string MaNhanVien { get; set; }
     public string TenNhanVien { get; set; }
-    public string NgaySinh { get; set; }
+    public DateTime NgaySinh { get; set; }
     public string SoDienThoai { get; set; }
     public string DiaChi { get; set; }
     public string MaCV { get; set; }
@@ -15,12 +17,12 @@
     public EmployeeModel() { }
 
     // Constructor đầy đủ tham số
-    public EmployeeModel(string maNhanVien, string tenNhanVien, string ngaySinh,
+    public EmployeeModel(string maNhanVien, string tenNhanVien, DateTime? ngaySinh,
                     string soDienThoai, string diaChi, string maCV)
     {
       MaNhanVien = maNhanVien;
       TenNhanVien = tenNhanVien;
-      NgaySinh = ngaySinh;
+      NgaySinh = ngaySinh ?? default(DateTime);
       SoDienThoai = soDienThoai;
       DiaChi = diaChi;
       MaCV = maCV;

@@ -60,7 +60,7 @@ namespace BTL_C_.src.Controllers.Admin
           {
             employee_id = GenerateIdUtil.GenerateId("EMPLOYEE");
           }
-          EmployeeModel employee = new EmployeeModel(employee_id, "", "", "", "", null);
+          EmployeeModel employee = new EmployeeModel(employee_id, "", null, "", "", null);
           account = new AccountModel(acc_id, viewFrmCreateAccount.getEmail(), viewFrmCreateAccount.getTenDangNhap(), HashPasswordUtil.hashPassword(viewFrmCreateAccount.getPassword()), viewFrmCreateAccount.getVaiTro(), employee_id, null);
           if (!employeeDAO.insert(employee))
           {

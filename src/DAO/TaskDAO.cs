@@ -1,17 +1,15 @@
 ﻿using BTL_C_.src.Models;
 using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Windows.Forms;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace BTL_C_.src.DAO
 {
-  internal class MaterialDAO : BaseDAO<MaterialModel>
+  internal class TaskDAO : BaseDAO<TaskModel>
   {
-    public static void fillMaterialCombo(ComboBox cmb)
-    {
-      fillDataToCombo(cmb, "SELECT macl, tencl FROM tblChatLieu ", "macl", "tencl");
-    }
-
     protected override string getColumns()
     {
       throw new NotImplementedException();
@@ -27,9 +25,9 @@ namespace BTL_C_.src.DAO
       throw new NotImplementedException();
     }
 
-    protected override string GetTableName() => " tblChatLieu ";
+    protected override string GetTableName() => " tblCongViec ";
 
-    protected override MaterialModel MapReaderToObject(SqlDataReader reader)
+    protected override TaskModel MapReaderToObject(SqlDataReader reader)
     {
       throw new NotImplementedException();
     }
