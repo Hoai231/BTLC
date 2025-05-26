@@ -1,44 +1,40 @@
 ﻿using BTL_C_.src.Models;
 using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BTL_C_.src.DAO
 {
-    internal class SizeDAO : BaseDAO<SizeModel>
+  internal class SizeDAO : BaseDAO<SizeModel>
+  {
+    public static void fillSizeCombo(ComboBox cmb)
     {
-        public static void fillSizeCombo(ComboBox cmb)
-        {
-            fillDataToCombo(cmb, "SELECT maco, tenco FROM tblCo ", "maco", "tenco");
-        }
-
-        protected override string getColumns()
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override string getKeyColumn()
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override string GetKeyExist()
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override string GetTableName()
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override SizeModel MapReaderToObject(SqlDataReader reader)
-        {
-            throw new NotImplementedException();
-        }
+      fillDataToCombo(cmb, "SELECT maco, tenco FROM tblCo ", "maco", "tenco");
     }
+
+    protected override string getColumns()
+    {
+      throw new NotImplementedException();
+    }
+
+    protected override string getKeyColumn()
+    {
+      throw new NotImplementedException();
+    }
+
+    protected override string GetKeyExist()
+    {
+      throw new NotImplementedException();
+    }
+
+    protected override string GetTableName()
+    {
+      throw new NotImplementedException();
+    }
+
+    protected override SizeModel MapReaderToObject(SqlDataReader reader)
+    {
+      throw new NotImplementedException();
+    }
+  }
 }

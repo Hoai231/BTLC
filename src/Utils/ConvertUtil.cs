@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 
 namespace BTL_C_.src.Utils
 {
-    internal class ConvertUtil
+  internal class ConvertUtil
+  {
+    public static string convertSdtToDB(string sdt)
     {
-        public static string convertSdtToDB(string sdt)
-        {
-            return new string(sdt.Where(char.IsDigit).ToArray());
-        }
+      return new string(sdt.Where(char.IsDigit).ToArray());
     }
+  }
 }
