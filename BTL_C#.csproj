@@ -68,6 +68,7 @@
     <Compile Include="src\Controllers\Admin\AccountController.cs" />
     <Compile Include="src\Controllers\Admin\HomeController.cs" />
     <Compile Include="src\Controllers\Admin\ProductController.cs" />
+    <Compile Include="src\Controllers\Admin\SupplierController.cs" />
     <Compile Include="src\Controllers\AppController.cs" />
     <Compile Include="src\Controllers\LoginController.cs" />
     <Compile Include="src\DAO\AccountDAO.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="src\DAO\SeasonDAO.cs" />
     <Compile Include="src\DAO\SizeDAO.cs" />
     <Compile Include="src\DAO\DemographicDAO.cs" />
+    <Compile Include="src\DAO\SupplierDAO.cs" />
     <Compile Include="src\Models\AccountModel.cs" />
     <Compile Include="src\Models\CategoryModel.cs" />
     <Compile Include="src\Models\ColorModel.cs" />
@@ -91,6 +93,8 @@
     <Compile Include="src\Models\ProductModel.cs" />
     <Compile Include="src\Models\SeasonModel.cs" />
     <Compile Include="src\Models\SizeModel.cs" />
+    <Compile Include="src\Models\SupplierModel.cs" />
+    <Compile Include="src\Utils\ConvertUtil.cs" />
     <Compile Include="src\Utils\ConvertToDataView.cs" />
     <Compile Include="src\Utils\ErrorUtil.cs" />
     <Compile Include="src\Utils\GenerateIdUtil.cs" />
@@ -135,6 +139,12 @@
     <Compile Include="src\Views\Admin\SidebarControl.Designer.cs">
       <DependentUpon>SidebarControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="src\Views\Admin\SupplierControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="src\Views\Admin\SupplierControl.Designer.cs">
+      <DependentUpon>SupplierControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="src\Views\FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,6 +178,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="src\Views\Admin\SidebarControl.resx">
       <DependentUpon>SidebarControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\Views\Admin\SupplierControl.resx">
+      <DependentUpon>SupplierControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\Views\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>

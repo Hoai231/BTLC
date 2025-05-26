@@ -20,6 +20,7 @@ namespace BTL_C_.src.Controllers.Admin
         {
             viewHome.getSidebar().setTaiKhoanListener(initViewWithControllerAccount);
             viewHome.getSidebar().setSanPhamListener(initViewWithControllerProduct);
+            viewHome.getSidebar().setNhaCungCapListener(initViewWithControllerSupplier);
             viewHome.getSidebar().setDangXuatListener(logout);
 
         }
@@ -34,6 +35,12 @@ namespace BTL_C_.src.Controllers.Admin
             ProductControl productControl = new ProductControl();
             ProductController productController = new ProductController(productControl);
             viewHome.loadControl(productControl);
+        }
+        private void initViewWithControllerSupplier(object sender, EventArgs e)
+        {
+            SupplierControl supplierControl = new SupplierControl();
+            SupplierController supplierController = new SupplierController(supplierControl);
+            viewHome.loadControl(supplierControl);
         }
         private void logout(object sender, EventArgs e)
         {

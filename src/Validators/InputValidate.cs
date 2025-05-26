@@ -47,5 +47,14 @@ namespace BTL_C_.src.Validators
             }
             return true;
         }
+        public static bool inputCreaetSupplierValidate(string mancc, string tenncc, string diachi, string sdt)
+        {
+            if (string.IsNullOrWhiteSpace(mancc) || string.IsNullOrWhiteSpace(tenncc) || string.IsNullOrWhiteSpace(diachi) || string.IsNullOrWhiteSpace(sdt))
+            {
+                MessageUtil.ShowWarning(MessageConstants.INPUT_WARN);
+                return false;
+            }
+            return true;
+        }
     }
 }
