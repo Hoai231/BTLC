@@ -27,10 +27,7 @@ namespace BTL_C_.src.DAO
       throw new NotImplementedException();
     }
 
-    protected override string GetTableName()
-    {
-      throw new NotImplementedException();
-    }
+    protected override string GetTableName() => " tblTheLoai ";
 
     protected override CategoryModel MapReaderToObject(SqlDataReader reader)
     {

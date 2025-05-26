@@ -26,26 +26,17 @@ namespace BTL_C_.src.DAO
       return ExecuteNonQuery(query, parameters);
     }
 
-    protected override string getColumns()
-    {
-      throw new NotImplementedException();
-    }
+    protected override string getColumns() => " manv, tennv, gioitinh, ngaysinh, sdt, diachi";
 
-    protected override string getKeyColumn()
-    {
-      throw new NotImplementedException();
-    }
+    protected override string getKeyColumn() => " manv ";
+    protected override string GetKeyExist() => " manv ";
 
-    protected override string GetKeyExist() => "manv";
-
-    protected override string GetTableName()
-    {
-      throw new NotImplementedException();
-    }
+    protected override string GetTableName() => " tblNhanVien nv LEFT JOIN tblCongViec cv ON nv.macv = cv.macv";
 
     protected override EmployeeModel MapReaderToObject(SqlDataReader reader)
     {
       throw new NotImplementedException();
     }
+    protected override string GetAlias() => " nv";
   }
 }

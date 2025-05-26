@@ -36,7 +36,31 @@ namespace BTL_C_.src.DAO
         throw new Exception("Đã xảy ra lỗi!!!", ex);
       }
     }
+    public int getCount()
+    {
+      string query;
+      if (GetAlias() == null)
+        query = "select Count(*) from " + GetTableName() + " where deleted=0";
+      else
+        query = "select Count(*) from " + GetTableName() + " where " + GetAlias() + ".deleted=0";
+      using (SqlConnection conn = ConfigDB.GetConnection())
+      using (SqlCommand cmd = new SqlCommand(query, conn))
+      {
+        try
+        {
+          conn.Open();
+          int count = (int)cmd.ExecuteScalar(); // lấy số lượng dòng
 
+          return count; // nếu > 0 thì tồn tại
+        }
+        catch (Exception ex)
+        {
+          throw new Exception("Đã xảy ra lỗi khi truy vấn", ex);
+        }
+
+      }
+
+    }
     public bool checkExist(String value)
     {
       string query = "Select Count(*) from " + GetTableName() + " where " + GetKeyExist() + " = @value";
@@ -85,8 +109,11 @@ namespace BTL_C_.src.DAO
     protected abstract T MapReaderToObject(SqlDataReader reader);
     public DataTable getAllRecord()
     {
-      string query = "SELECT" + getColumns() + "FROM " + GetTableName() + " where deleted=0";
-
+      string query;
+      if (GetAlias() == null)
+        query = "select" + getColumns() + "from " + GetTableName() + " where deleted=0";
+      else
+        query = "select" + getColumns() + "from " + GetTableName() + " where " + GetAlias() + ".deleted=0";
       using (SqlConnection conn = ConfigDB.GetConnection())
       {
         try
