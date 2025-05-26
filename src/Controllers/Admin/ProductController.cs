@@ -207,7 +207,8 @@ namespace BTL_C_.src.Controllers.Admin
         {
             try
             {
-                DataView dv = new DataView(productDao.findRecordsByName(viewProductControl.getTextSearch()));
+                DataView dv = productDao.findRecordsByName("tenquanao", viewProductControl.getTextSearch());
+                viewProductControl.GetDataGridViewProduct().DataSource = dv; // Hiển thị danh sách đã lọc
                 viewProductControl.loadDataToGridView(dv);
             }
             catch (Exception ex)

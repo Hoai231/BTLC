@@ -63,6 +63,10 @@ namespace BTL_C_.src.Controllers.Admin
                 else
                 {
                     string employee_id = GenerateIdUtil.GenerateId("EMPLOYEE");
+                    while (!employeeDAO.checkExist(employee_id))
+                    {
+                        employee_id = GenerateIdUtil.GenerateId("EMPLOYEE");
+                    }
                     EmployeeModel employee = new EmployeeModel(employee_id, "", "", "", "", null);
                     account = new AccountModel(acc_id, viewFrmCreateAccount.getEmail(), viewFrmCreateAccount.getTenDangNhap(), HashPasswordUtil.hashPassword(viewFrmCreateAccount.getPassword()), viewFrmCreateAccount.getVaiTro(), employee_id, null);
                     if (!employeeDAO.insert(employee))
@@ -203,15 +207,23 @@ namespace BTL_C_.src.Controllers.Admin
         }
         private void findAccountBySearch(object sender, EventArgs e)
         {
-            AccountModel account = accountDao.findRecordByField("email", viewAccounts.getSearchText());
-            if (account == null)
+
+            try
             {
-                MessageUtil.ShowInfo("Tài khoản không tồn tại!");
-                return;
+                AccountModel account = accountDao.findRecordByField("email", viewAccounts.getSearchText());
+                if (account == null)
+                {
+                    MessageUtil.ShowInfo("Tài khoản không tồn tại!");
+                    return;
+                }
+                DataView dv = ConvertToDataView.ObjectToDataView(account);
+                dv.RowFilter = "vai_tro = 'Nhân Viên'";
+                viewAccounts.loadDataToGridView(dv);
             }
-            DataView dv = ConvertToDataView.ObjectToDataView(account);
-            dv.RowFilter = "vai_tro = 'Nhân Viên'";
-            viewAccounts.loadDataToGridView(dv);
+            catch (Exception ex)
+            {
+                ErrorUtil.handle(ex, "Đã xảy ra lỗi!!!");
+            }
         }
         private void redirectFrmCreateAccount(object sender, EventArgs e)
         {

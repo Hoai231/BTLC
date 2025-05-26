@@ -1,5 +1,6 @@
 ﻿using BTL_C_.Configs;
 using BTL_C_.src.Utils;
+using BTL_C_.src.Views.Admin;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -112,28 +113,25 @@ namespace BTL_C_.src.DAO
             }
 
         }
-        public DataTable findRecordsByName(string value)
+        public DataView findRecordsByName(string key, string value)
         {
-            string query = "Select " + getColumns() + " From " + GetTableName() + " where deleted=0 and " + getName() + " Like @value  ";
-            using (SqlConnection conn = ConfigDB.GetConnection())
-            using (SqlCommand cmd = new SqlCommand(query, conn))
+
+            try
             {
-                try
-                {
-                    cmd.Parameters.AddWithValue("@value", "%" + value + "%");
-                    conn.Open();
-
-                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    adapter.Fill(dt);//Thực thi SELECT, nhận kết quả từ DB
-                    return dt;
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception("Đã xảy ra lỗi khi truy vấn!!!", ex);
-                }
-
+                //DataView dv = new DataView(supplierDAO.findRecordsByName(supplierControl.getTextSearch()));
+                DataTable dt = getAllRecord();
+                // Lọc theo tên
+                string keyword = value.Replace("'", "''");
+                DataView dv = new DataView(dt);
+                dv.RowFilter = $"{key} LIKE '%{keyword}%'";
+                return dv;
             }
+            catch (Exception ex)
+            {
+                throw new Exception("Đã xảy ra lỗi khi truy vấn!!!", ex);
+            }
+
+
         }
 
         public bool delete(string value)

@@ -21,11 +21,13 @@ namespace BTL_C_.src.Views.Admin
         public void setTaoListener(EventHandler handler) => btnTao.Click += handler;
         public void setLuuListener(EventHandler handler) => btnLuu.Click += handler;
         public void setXoaListener(EventHandler handler) => btnXoa.Click += handler;
+        public void setTimListener(EventHandler handler) => btnTim.Click += handler;
         public void setSupplierCellClickListener(DataGridViewCellEventHandler handler) => dataGridViewNhaCungCap.CellClick += handler;
         public string getMaNCC() => txtMaNCC.Text.Trim();
         public string getTenNCC() => txtTenNCC.Text.Trim();
         public string getSDT() => txtDienThoai.Text.Trim();
         public string getDiaChi() => txtDiaChi.Text.Trim();
+        public string getTextSearch() => txtSearch.Text.Trim();
 
         public void loadDataToGridView(DataView dv)
         {

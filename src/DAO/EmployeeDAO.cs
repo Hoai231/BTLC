@@ -39,10 +39,7 @@ namespace BTL_C_.src.DAO
             throw new NotImplementedException();
         }
 
-        protected override string GetKeyExist()
-        {
-            throw new NotImplementedException();
-        }
+        protected override string GetKeyExist() => "manv";
 
         protected override string GetTableName()
         {

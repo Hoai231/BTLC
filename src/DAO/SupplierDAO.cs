@@ -14,6 +14,7 @@ namespace BTL_C_.src.DAO
         protected override string getColumns() => " mancc, tenncc, diachi, sdt ";
 
         protected override string getKeyColumn() => "mancc";
+        protected override string getName() => "tenncc";
 
         protected override string GetKeyExist()
         {
