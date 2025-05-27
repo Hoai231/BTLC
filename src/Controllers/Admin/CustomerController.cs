@@ -12,31 +12,35 @@ using System.Windows.Forms;
 
 namespace BTL_C_.src.Controllers.Admin
 {
-  internal class CustomerController
+  internal class CustomerController : BaseController<CustomerModel>
   {
     private CustomerControl viewCustomerControl;
     private CustomerDAO customerDao;
+
+    protected override string EntityName => "khách hàng";
+
     public CustomerController(CustomerControl viewCustomerControl)
     {
       this.viewCustomerControl = viewCustomerControl;
       customerDao = new CustomerDAO();
-      loadDataToGridViewCustomer();
-      setupEventListeners();
+      LoadDataToGridViewCustomer();
+      SetupEventListeners();
     }
-    private void setupEventListeners()
+    private void SetupEventListeners()
     {
-      viewCustomerControl.setLamMoiListener(reset);
-      viewCustomerControl.setLuuListener(updateCustomer);
-      viewCustomerControl.setTimListener(findCustomerBySearch);
-      viewCustomerControl.setCustomerCellClickListener(OnCustomerCellClick);
+      viewCustomerControl.SetLamMoiListener(Reset);
+      viewCustomerControl.SetLuuListener(UpdateCustomer);
+      viewCustomerControl.SetTimListener(FindCustomerBySearch);
+      viewCustomerControl.SetXoaListener(Delete);
+      viewCustomerControl.SetCustomerCellClickListener(OnCustomerCellClick);
     }
-    private void loadDataToGridViewCustomer()
+    private void LoadDataToGridViewCustomer()
     {
       try
       {
         DataTable dt = customerDao.getAllRecord();
         DataView dv = new DataView(dt);
-        viewCustomerControl.loadDataToGridView(dv);
+        viewCustomerControl.LoadDataToGridView(dv);
       }
       catch (Exception ex)
       {
@@ -48,18 +52,18 @@ namespace BTL_C_.src.Controllers.Admin
     {
       if (e.RowIndex >= 0)
       {
-        var dgv = viewCustomerControl.getDataGridViewCustomer();
+        var dgv = viewCustomerControl.GetDataGridViewCustomer();
         var row = dgv.Rows[e.RowIndex];
         string makh = row.Cells[0].Value.ToString();
         string tenkh = row.Cells[1].Value.ToString();
         string sdt = row.Cells[2].Value.ToString();
         int diem = (int)row.Cells[3].Value;
-        viewCustomerControl.setFormData(makh, tenkh, sdt, diem);
+        viewCustomerControl.SetFormData(makh, tenkh, sdt, diem);
       }
     }
-    private void updateCustomer(object sender, EventArgs e)
+    private void UpdateCustomer(object sender, EventArgs e)
     {
-      string makh = viewCustomerControl.getMaKH();
+      string makh = viewCustomerControl.GetMaKH();
       if (string.IsNullOrWhiteSpace(makh))
       {
         MessageUtil.ShowWarning("Vui lòng chọn thông tin khách hàng muốn sửa!");
@@ -67,8 +71,8 @@ namespace BTL_C_.src.Controllers.Admin
       }
       if (!MessageUtil.Confirm("Bạn có muốn cập nhật?"))
         return;
-      string sdt = ConvertUtil.convertSdtToDB(viewCustomerControl.getSDT());
-      CustomerModel customer = new CustomerModel(makh, viewCustomerControl.getTenKH(), sdt, viewCustomerControl.getDiemTichLuy());
+      string sdt = ConvertUtil.convertSdtToDB(viewCustomerControl.GetSDT());
+      CustomerModel customer = new CustomerModel(makh, viewCustomerControl.GetTenKH(), sdt, viewCustomerControl.GetDiemTichLuy());
 
       try
       {
@@ -78,30 +82,36 @@ namespace BTL_C_.src.Controllers.Admin
           return;
         }
         MessageUtil.ShowInfo("Cập nhật thành công!");
-        reset(sender, e);
+        Reset(sender, e);
       }
       catch (Exception ex)
       {
         ErrorUtil.handle(ex, "Đã xảy ra lỗi khi cập nhật!!!");
       }
     }
-    private void findCustomerBySearch(object sender, EventArgs e)
+    private void FindCustomerBySearch(object sender, EventArgs e)
     {
       try
       {
-        DataView dv = customerDao.findRecordsByName("tenkh", viewCustomerControl.getTextSearch());
-        viewCustomerControl.getDataGridViewCustomer().DataSource = dv;
-        viewCustomerControl.loadDataToGridView(dv);
+        DataView dv = customerDao.findRecordsByName("tenkh", viewCustomerControl.GetTextSearch());
+        viewCustomerControl.GetDataGridViewCustomer().DataSource = dv;
+        viewCustomerControl.LoadDataToGridView(dv);
       }
       catch (Exception ex)
       {
         ErrorUtil.handle(ex, "Đã xảy ra lỗi khi tìm kiếm!!!");
       }
     }
-    private void reset(object sender, EventArgs e)
+    private void Reset(object sender, EventArgs e)
     {
-      viewCustomerControl.resetForm();
-      loadDataToGridViewCustomer();
+      viewCustomerControl.ResetForm();
+      LoadDataToGridViewCustomer();
     }
+
+    protected override string GetId() => viewCustomerControl.GetMaKH();
+
+    protected override bool DeleteById(string id) => customerDao.delete(id);
+
+    protected override void ResetView(object sender, EventArgs e) => Reset(sender, e);
   }
 }

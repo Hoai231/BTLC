@@ -17,13 +17,13 @@ namespace BTL_C_.src.Views.Admin
     {
       InitializeComponent();
     }
-    public void setLuuListener(EventHandler handler) => btnLuu.Click += handler;
-    public void setXoaListener(EventHandler handler) => btnXoa.Click += handler;
-    public void setThoatListener(EventHandler handler) => btnThoat.Click += handler;
-    public void setLamMoiListener(EventHandler handler) => btnLamMoi.Click += handler;
-    public void setTaoListener(EventHandler handler) => btnTao.Click += handler;
-    public void setSeasonCellClickListener(DataGridViewCellEventHandler handler) => dataGridViewMua.CellClick += handler;
-    public void loadDataToGridViewSeaSon(DataView dv)
+    public void SetLuuListener(EventHandler handler) => btnLuu.Click += handler;
+    public void SetXoaListener(EventHandler handler) => btnXoa.Click += handler;
+    public void SetThoatListener(EventHandler handler) => btnThoat.Click += handler;
+    public void SetLamMoiListener(EventHandler handler) => btnLamMoi.Click += handler;
+    public void SetTaoListener(EventHandler handler) => btnTao.Click += handler;
+    public void SetSeasonCellClickListener(DataGridViewCellEventHandler handler) => dataGridViewMua.CellClick += handler;
+    public void LoadDataToGridViewSeaSon(DataView dv)
     {
       dataGridViewMua.DataSource = dv;
       dataGridViewMua.Columns[0].HeaderText = "Mã Mùa";
@@ -34,20 +34,20 @@ namespace BTL_C_.src.Views.Admin
       dataGridViewMua.EditMode = DataGridViewEditMode.EditProgrammatically;// Chỉ được chỉnh sửa ô bằng code, không cho người dùng tự click và sửa nội dung
     }
 
-    public void setFormData(string mamua, string tenmua)
+    public void SetFormData(string mamua, string tenmua)
     {
       txtMaMua.Text = mamua;
       txtTenMua.Text = tenmua;
     }
 
-    public void resetForm()
+    public void ResetForm()
     {
       txtMaMua.Text = "";
       txtTenMua.Text = "";
     }
-    public string getMaMua() => txtMaMua.Text.Trim();
+    public string GetMaMua() => txtMaMua.Text.Trim();
 
-    public string getTenMua() => txtTenMua.Text.Trim();
-    public DataGridView getDataGridViewSeason() => dataGridViewMua;
+    public string GetTenMua() => txtTenMua.Text.Trim();
+    public DataGridView GetDataGridViewSeason() => dataGridViewMua;
   }
 }

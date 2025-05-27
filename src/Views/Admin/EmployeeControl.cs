@@ -16,11 +16,11 @@ namespace BTL_C_.src.Views.Admin
     {
       InitializeComponent();
     }
-    public void setLamMoiLítener(EventHandler handler) => btnLamMoi.Click += handler;
-    public void setLuuListener(EventHandler handler) => btnLuu.Click += handler;
-    public void setTimListener(EventHandler handler) => btnTim.Click += handler;
-    public void setEmployeeCellClickListener(DataGridViewCellEventHandler handler) => dataGridViewEmployee.CellClick += handler;
-    public void loadDataToGridView(DataView dv)
+    public void SetLamMoiLítener(EventHandler handler) => btnLamMoi.Click += handler;
+    public void SetLuuListener(EventHandler handler) => btnLuu.Click += handler;
+    public void SetTimListener(EventHandler handler) => btnTim.Click += handler;
+    public void SetEmployeeCellClickListener(DataGridViewCellEventHandler handler) => dataGridViewEmployee.CellClick += handler;
+    public void LoadDataToGridView(DataView dv)
     {
       dataGridViewEmployee.DataSource = dv;
       dataGridViewEmployee.Columns[0].HeaderText = "Mã nhân viên";
@@ -38,7 +38,7 @@ namespace BTL_C_.src.Views.Admin
       dataGridViewEmployee.ReadOnly = true;
       dataGridViewEmployee.AllowUserToAddRows = false;
     }
-    public void setForm(string manv, string tennv, string diachi, string gt, string congviec, string sdt, DateTime? ngaysinh)
+    public void SetForm(string manv, string tennv, string diachi, string gt, string congviec, string sdt, DateTime? ngaysinh)
     {
       txtMaNhanVien.Text = manv;
       txtTenNhanVien.Text = tennv;
@@ -51,7 +51,7 @@ namespace BTL_C_.src.Views.Admin
       mskSDT.Text = sdt;
       dateNgaySinh.Value = ngaysinh ?? DateTime.Today;
     }
-    public void resetForm()
+    public void ResetForm()
     {
       txtMaNhanVien.Text = "";
       txtTenNhanVien.Text = "";
@@ -61,20 +61,20 @@ namespace BTL_C_.src.Views.Admin
       mskSDT.Text = "";
       dateNgaySinh.Value = DateTime.Today;
     }
-    public ComboBox getCmbCongViec()
+    public ComboBox GetCmbCongViec()
     {
       return cmbCongViec;
     }
-    public string getMaNV() => txtMaNhanVien.Text.Trim();
+    public string GetMaNV() => txtMaNhanVien.Text.Trim();
 
-    public string getTenNV() => txtTenNhanVien.Text.Trim();
+    public string GetTenNV() => txtTenNhanVien.Text.Trim();
 
-    public string getDiaChi() => txtDiaChi.Text.Trim();
-    public string getCongViec() => cmbCongViec.SelectedValue.ToString();
-    public string getGioiTinh() => (string)cmbGioiTinh.SelectedItem;
-    public DateTime getNgaySinh() => dateNgaySinh.Value;
-    public string getSDT() => mskSDT.Text.Trim();
-    public string getTextSearch() => txtSearch.Text.Trim();
+    public string GetDiaChi() => txtDiaChi.Text.Trim();
+    public string GetCongViec() => cmbCongViec.SelectedValue.ToString();
+    public string GetGioiTinh() => (string)cmbGioiTinh.SelectedItem;
+    public DateTime GetNgaySinh() => dateNgaySinh.Value;
+    public string GetSDT() => mskSDT.Text.Trim();
+    public string GetTextSearch() => txtSearch.Text.Trim();
     public DataGridView GetDataGridViewEmployee() => dataGridViewEmployee;
   }
 }

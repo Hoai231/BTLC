@@ -9,32 +9,35 @@ using System.Windows.Forms;
 
 namespace BTL_C_.src.Controllers.Admin
 {
-  internal class SupplierController
+  internal class SupplierController : BaseController<SupplierModel>
   {
     private SupplierControl viewSupplierControl;
     private SupplierDAO supplierDao;
+
+    protected override string EntityName => "nhà cung cấp";
+
     public SupplierController(SupplierControl supplierControl)
     {
       this.viewSupplierControl = supplierControl;
       supplierDao = new SupplierDAO();
-      loadDataToGridView();
-      setupEventListeners();
+      LoadDataToGridView();
+      SetupEventListeners();
     }
-    private void setupEventListeners()
+    private void SetupEventListeners()
     {
-      viewSupplierControl.setLamMoiListener(reset);
-      viewSupplierControl.setTaoListener(insertSupplier);
-      viewSupplierControl.setSupplierCellClickListener(OnSupplierCellClick);
-      viewSupplierControl.setLuuListener(updateSupplier);
-      viewSupplierControl.setXoaListener(deletedSupplier);
-      viewSupplierControl.setTimListener(findSupplierBySearch);
+      viewSupplierControl.SetLamMoiListener(Reset);
+      viewSupplierControl.SetTaoListener(InsertSupplier);
+      viewSupplierControl.SetSupplierCellClickListener(OnSupplierCellClick);
+      viewSupplierControl.SetLuuListener(UpdateSupplier);
+      viewSupplierControl.SetXoaListener(Delete);
+      viewSupplierControl.SetTimListener(FindSupplierBySearch);
     }
-    public void insertSupplier(object sender, EventArgs e)
+    public void InsertSupplier(object sender, EventArgs e)
     {
       string mancc = GenerateIdUtil.GenerateId("SUPPLI");
-      string tenncc = viewSupplierControl.getTenNCC();
-      string diachi = viewSupplierControl.getDiaChi();
-      string sdt = ConvertUtil.convertSdtToDB(viewSupplierControl.getSDT());//  (036) 452-1234 => 0364521234
+      string tenncc = viewSupplierControl.GetTenNCC();
+      string diachi = viewSupplierControl.GetDiaChi();
+      string sdt = ConvertUtil.convertSdtToDB(viewSupplierControl.GetSDT());//  (036) 452-1234 => 0364521234
       if (!InputValidate.inputCreaetSupplierValidate(mancc, tenncc, diachi, sdt))
         return;
       SupplierModel supplier = new SupplierModel(mancc, tenncc, diachi, sdt);
@@ -46,19 +49,19 @@ namespace BTL_C_.src.Controllers.Admin
           return;
         }
         MessageUtil.ShowInfo("Tạo thành công!");
-        reset(sender, e);
+        Reset(sender, e);
       }
       catch (Exception ex)
       {
         ErrorUtil.handle(ex, "Đã xảy ra lỗi khi tạo!!!");
       }
     }
-    private void updateSupplier(object sender, EventArgs e)
+    private void UpdateSupplier(object sender, EventArgs e)
     {
-      string mancc = viewSupplierControl.getMaNCC();
-      string tenncc = viewSupplierControl.getTenNCC();
-      string diachi = viewSupplierControl.getDiaChi();
-      string sdt = ConvertUtil.convertSdtToDB(viewSupplierControl.getSDT());
+      string mancc = viewSupplierControl.GetMaNCC();
+      string tenncc = viewSupplierControl.GetTenNCC();
+      string diachi = viewSupplierControl.GetDiaChi();
+      string sdt = ConvertUtil.convertSdtToDB(viewSupplierControl.GetSDT());
       if (string.IsNullOrWhiteSpace(mancc))
       {
         MessageUtil.ShowWarning("Vui lòng chọn nhà cung cấp muốn sửa!");
@@ -77,47 +80,22 @@ namespace BTL_C_.src.Controllers.Admin
           return;
         }
         MessageUtil.ShowInfo("Cập nhật thành công!");
-        reset(sender, e);
+        Reset(sender, e);
       }
       catch (Exception ex)
       {
         ErrorUtil.handle(ex, "Đã xảy ra lỗi khi cập nhật!!!");
       }
     }
-    private void deletedSupplier(object sender, EventArgs e)
-    {
-      string mancc = viewSupplierControl.getMaNCC();
-      if (string.IsNullOrWhiteSpace(mancc))
-      {
-        MessageUtil.ShowWarning("Vui lòng chọn nhà cung cấp muốn sửa!");
-        return;
-      }
-      if (!MessageUtil.Confirm("Bạn có chắc chắn muốn xóa?"))
-        return;
 
-      try
-      {
-        if (!supplierDao.delete(mancc))
-        {
-          MessageUtil.ShowError("Xóa thất bại!!!");
-          return;
-        }
-        MessageUtil.ShowInfo("Đã xóa thành công");
-        reset(sender, e);
-      }
-      catch (Exception ex)
-      {
-        ErrorUtil.handle(ex, "Đã xảy ra lỗi khi xóa!!!");
-      }
-    }
-    private void loadDataToGridView()
+    private void LoadDataToGridView()
     {// Giả sử bạn đã có DataTable chứa dữ liệu tài khoản
       DataTable allAccounts = supplierDao.getAllRecord();
 
       // Tạo DataView từ DataTable và lọc theo vai trò
       DataView dv = new DataView(allAccounts);
 
-      viewSupplierControl.loadDataToGridView(dv);
+      viewSupplierControl.LoadDataToGridView(dv);
     }
     private void OnSupplierCellClick(object sender, DataGridViewCellEventArgs e)
     {
@@ -129,26 +107,32 @@ namespace BTL_C_.src.Controllers.Admin
         string tenncc = row.Cells[1].Value.ToString();
         string diachi = row.Cells[2].Value.ToString();
         string sdt = row.Cells[3].Value.ToString();
-        viewSupplierControl.setFormData(mancc, tenncc, diachi, sdt);
+        viewSupplierControl.SetFormData(mancc, tenncc, diachi, sdt);
       }
     }
-    private void findSupplierBySearch(object sender, EventArgs e)
+    private void FindSupplierBySearch(object sender, EventArgs e)
     {
       try
       {
-        DataView dv = supplierDao.findRecordsByName("tenncc", viewSupplierControl.getTextSearch());
+        DataView dv = supplierDao.findRecordsByName("tenncc", viewSupplierControl.GetTextSearch());
         viewSupplierControl.GetDataGridViewSupplier().DataSource = dv; // Hiển thị danh sách đã lọc
-        viewSupplierControl.loadDataToGridView(dv);
+        viewSupplierControl.LoadDataToGridView(dv);
       }
       catch (Exception ex)
       {
         ErrorUtil.handle(ex, "Đã xảy ra lỗi khi tìm!!!");
       }
     }
-    private void reset(object sender, EventArgs e)
+    private void Reset(object sender, EventArgs e)
     {
-      viewSupplierControl.resetForm();
-      loadDataToGridView();
+      viewSupplierControl.ResetForm();
+      LoadDataToGridView();
     }
+
+    protected override string GetId() => viewSupplierControl.GetMaNCC();
+
+    protected override bool DeleteById(string id) => supplierDao.delete(id);
+
+    protected override void ResetView(object sender, EventArgs e) => Reset(sender, e);
   }
 }

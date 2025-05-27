@@ -9,12 +9,15 @@ using System.Windows.Forms;
 
 namespace BTL_C_.src.Controllers.Admin
 {
-  internal class AccountController
+  internal class AccountController : BaseController<AccountModel>
   {
     private FrmCreateAccount viewFrmCreateAccount;
     private AccountControl viewAccounts;
     private AccountDAO accountDao;
     private EmployeeDAO employeeDAO;
+
+    protected override string EntityName => "tài khoản";
+
     public AccountController(FrmCreateAccount viewFrmCreateAccount)
     {
 
@@ -98,7 +101,7 @@ namespace BTL_C_.src.Controllers.Admin
       viewAccounts.setAccountCellClickListener(OnAccountCellClick);
       viewAccounts.setLamMoiListener(reset);
       viewAccounts.setLuuListener(updateAccount);
-      viewAccounts.setXoaListener(deleteAccount);
+      viewAccounts.setXoaListener(Delete);
       viewAccounts.setTrangThaiListener(changeStatus);
       viewAccounts.setTimListener(findAccountBySearch);
       viewAccounts.setTaoListener(redirectFrmCreateAccount);
@@ -151,29 +154,6 @@ namespace BTL_C_.src.Controllers.Admin
         ErrorUtil.handle(ex, "Đã xảy ra lỗi khi cập nhật!!!");
       }
     }
-    private void deleteAccount(object sender, EventArgs e)
-    {
-      if (string.IsNullOrWhiteSpace(viewAccounts.getMatk()))
-      {
-        MessageUtil.ShowWarning("Vui lòng chọn tài khoản muốn xóa!");
-        return;
-      }
-      try
-      {
-        if (!accountDao.delete(viewAccounts.getMatk()))
-        {
-          MessageUtil.ShowWarning("Xóa thất bại!");
-          return;
-        }
-        MessageUtil.ShowInfo("Đã xóa thành công!");
-        reset(sender, e);
-      }
-      catch (Exception ex)
-      {
-
-        ErrorUtil.handle(ex, "Đã xảy ra lỗi khi xóa!!!");
-      }
-    }
     private void changeStatus(object sender, EventArgs e)
     {
       if (string.IsNullOrWhiteSpace(viewAccounts.getMatk()))
@@ -223,5 +203,11 @@ namespace BTL_C_.src.Controllers.Admin
     {
       AppController.startFrmCreateAccount(viewAccounts.getForm());
     }
+
+    protected override string GetId() => viewAccounts.getMatk();
+
+    protected override bool DeleteById(string id) => accountDao.delete(id);
+
+    protected override void ResetView(object sender, EventArgs e) => reset(sender, e);
   }
 }

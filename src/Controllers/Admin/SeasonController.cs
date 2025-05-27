@@ -13,40 +13,43 @@ using System.Windows.Forms;
 
 namespace BTL_C_.src.Controllers.Admin
 {
-  internal class SeasonController
+  internal class SeasonController : BaseController<SeasonModel>
   {
     private FrmSeason viewFrmSeason;
     private SeasonDAO seasonDao;
+
+    protected override string EntityName => "mùa";
+
     public SeasonController(FrmSeason viewFrmSeason)
     {
       this.viewFrmSeason = viewFrmSeason;
       seasonDao = new SeasonDAO();
-      loadDataToGridViewSeason();
-      setupEventListeners();
+      LoadDataToGridViewSeason();
+      SetupEventListeners();
     }
 
     /// <summary>
     /// Setup sự kiện
     /// </summary>
-    private void setupEventListeners()
+    private void SetupEventListeners()
     {
-      viewFrmSeason.setTaoListener(insertSeason);
-      viewFrmSeason.setLamMoiListener(resetForm);
-      viewFrmSeason.setLuuListener(updateSeason);
-      viewFrmSeason.setXoaListener(deleteSeason);
-      viewFrmSeason.setSeasonCellClickListener(OnAccountCellClick);
+      viewFrmSeason.SetTaoListener(InsertSeason);
+      viewFrmSeason.SetLamMoiListener(ResetForm);
+      viewFrmSeason.SetLuuListener(UpdateSeason);
+      viewFrmSeason.SetXoaListener(Delete);
+      viewFrmSeason.SetSeasonCellClickListener(OnAccountCellClick);
 
     }
     /// <summary>
     ///  Load data ra bảng
     /// </summary>
-    private void loadDataToGridViewSeason()
+    private void LoadDataToGridViewSeason()
     {
       try
       {
         DataTable dt = seasonDao.getAllRecord();
         DataView dv = new DataView(dt);
-        viewFrmSeason.loadDataToGridViewSeaSon(dv);
+        viewFrmSeason.LoadDataToGridViewSeaSon(dv);
       }
       catch (Exception ex)
       {
@@ -62,42 +65,42 @@ namespace BTL_C_.src.Controllers.Admin
     {
       if (e.RowIndex >= 0)
       {
-        var dgv = viewFrmSeason.getDataGridViewSeason();
+        var dgv = viewFrmSeason.GetDataGridViewSeason();
         var row = dgv.Rows[e.RowIndex];
         string mamua = row.Cells[0].Value.ToString();
         string tenmua = row.Cells[1].Value.ToString();
-        viewFrmSeason.setFormData(mamua, tenmua);
+        viewFrmSeason.SetFormData(mamua, tenmua);
       }
     }
     /// <summary>
     /// Thêm dữ liệu vào db
     /// </summary>
-    private void insertSeason(object sender, EventArgs e)
+    private void InsertSeason(object sender, EventArgs e)
     {
 
-      if (!InputValidate.inputSeasonValidate(viewFrmSeason.getTenMua()))
+      if (!InputValidate.inputSeasonValidate(viewFrmSeason.GetTenMua()))
         return;
       try
       {
         string mamua = GenerateIdUtil.GenerateId("SEASON");
-        SeasonModel season = new SeasonModel(mamua, viewFrmSeason.getTenMua());
+        SeasonModel season = new SeasonModel(mamua, viewFrmSeason.GetTenMua());
         if (!seasonDao.insert(season))
         {
           MessageUtil.ShowError("Tạo không thành công!!!");
           return;
         }
         MessageUtil.ShowInfo("Tạo thành công!");
-        resetForm(sender, e);
+        ResetForm(sender, e);
       }
       catch (Exception ex)
       {
         ErrorUtil.handle(ex, "Đã xảy ra lỗi khi tạo!!!");
       }
     }
-    private void updateSeason(object sender, EventArgs e)
+    private void UpdateSeason(object sender, EventArgs e)
     {
-      string mamua = viewFrmSeason.getMaMua();
-      string tenmua = viewFrmSeason.getTenMua();
+      string mamua = viewFrmSeason.GetMaMua();
+      string tenmua = viewFrmSeason.GetTenMua();
       if (string.IsNullOrWhiteSpace(mamua))
       {
         MessageUtil.ShowWarning("Vui lòng chọn mùa muốn sửa!");
@@ -116,44 +119,27 @@ namespace BTL_C_.src.Controllers.Admin
           return;
         }
         MessageUtil.ShowInfo("Cập nhật thành công!");
-        resetForm(sender, e);
+        ResetForm(sender, e);
       }
       catch (Exception ex)
       {
         ErrorUtil.handle(ex, "Đã xảy ra lỗi khi cập nhật!!!");
       }
     }
-    private void deleteSeason(object sender, EventArgs e)
-    {
-      string mamua = viewFrmSeason.getMaMua();
-      if (string.IsNullOrWhiteSpace(mamua))
-      {
-        MessageUtil.ShowWarning("Vui lòng chọn mùa muốn xóa!");
-        return;
-      }
-      if (!MessageUtil.Confirm("Bạn có chắc chắn xóa?"))
-        return;
-      try
-      {
-        if (!seasonDao.delete(mamua))
-        {
-          MessageUtil.ShowWarning("Xóa thất bại!!!");
-          return;
-        }
-        MessageUtil.ShowInfo("Đã xóa thành công!");
-        resetForm(sender, e);
-      }catch(Exception ex)
-      {
-        ErrorUtil.handle(ex, "Đã xảy ra lỗi khi xóa");
-      }
-    }
+
     /// <summary>
     /// Reset form
     /// </summary>
-    private void resetForm(object sender, EventArgs e)
+    private void ResetForm(object sender, EventArgs e)
     {
-      viewFrmSeason.resetForm();
-      loadDataToGridViewSeason();
+      viewFrmSeason.ResetForm();
+      LoadDataToGridViewSeason();
     }
+
+    protected override string GetId() => viewFrmSeason.GetMaMua();
+
+    protected override bool DeleteById(string id) => seasonDao.delete(id);
+
+    protected override void ResetView(object sender, EventArgs e) => ResetForm(sender, e);
   }
 }

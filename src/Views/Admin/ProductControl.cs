@@ -10,14 +10,14 @@ namespace BTL_C_.src.Views.Admin
     {
       InitializeComponent();
     }
-    public void setLamMoiListener(EventHandler handler) => btnLamMoi.Click += handler;
-    public void setLuuListener(EventHandler handler) => btnLuu.Click += handler;
-    public void setXoaListener(EventHandler handler) => btnXoa.Click += handler;
-    public void setTaoListener(EventHandler handler) => btnTao.Click += handler;
-    public void setTimListener(EventHandler handler) => btnTim.Click += handler;
-    public void setProductCellClickListener(DataGridViewCellEventHandler handler) => dataGridViewProduct.CellClick += handler;
+    public void SetLamMoiListener(EventHandler handler) => btnLamMoi.Click += handler;
+    public void SetLuuListener(EventHandler handler) => btnLuu.Click += handler;
+    public void SetXoaListener(EventHandler handler) => btnXoa.Click += handler;
+    public void SetTaoListener(EventHandler handler) => btnTao.Click += handler;
+    public void SetTimListener(EventHandler handler) => btnTim.Click += handler;
+    public void SetProductCellClickListener(DataGridViewCellEventHandler handler) => dataGridViewProduct.CellClick += handler;
 
-    public void loadDataToGridView(DataView dv)
+    public void LoadDataToGridView(DataView dv)
     {
       dataGridViewProduct.DataSource = dv;
       dataGridViewProduct.Columns[0].HeaderText = "Mã sản phẩm";
@@ -41,7 +41,7 @@ namespace BTL_C_.src.Views.Admin
       dataGridViewProduct.ReadOnly = true;
       dataGridViewProduct.AllowUserToAddRows = false;
     }
-    public void resetForm()
+    public void ResetForm()
     {
       txtMaSanPham.Text = "";
       txtTenSanPham.Text = "";
@@ -59,7 +59,7 @@ namespace BTL_C_.src.Views.Admin
       donGiaBan.Value = 1;
       slTonKho.Value = 1;
     }
-    public void setForm(string masanpham, string tensanpham, string theloai, string chatlieu, string mau, string dt, string mua, string nsx, string co, int sltonkho, float dongianhap, float dongiaban, string anh, string trangthai)
+    public void SetForm(string masanpham, string tensanpham, string theloai, string chatlieu, string mau, string dt, string mua, string nsx, string co, int sltonkho, float dongianhap, float dongiaban, string anh, string trangthai)
     {
       txtMaSanPham.Text = masanpham ?? "";
       txtTenSanPham.Text = tensanpham ?? "";
@@ -83,95 +83,95 @@ namespace BTL_C_.src.Views.Admin
     {
       return dataGridViewProduct;
     }
-    public ComboBox getCmbCo()
+    public ComboBox GetCmbCo()
     {
       return cmbCo;
     }
-    public ComboBox getCmbChatLieu()
+    public ComboBox GetCmbChatLieu()
     {
       return cmbChatLieu;
     }
-    public ComboBox getCmbTheLoai()
+    public ComboBox GetCmbTheLoai()
     {
       return cmbTheLoai;
     }
-    public ComboBox getCmbMua()
+    public ComboBox GetCmbMua()
     {
       return cmbMua;
     }
-    public ComboBox getCmbMau()
+    public ComboBox GetCmbMau()
     {
       return cmbMau;
     }
-    public ComboBox getCmbDoiTuong()
+    public ComboBox GetCmbDoiTuong()
     {
       return cmbDoiTuong;
     }
-    public ComboBox getCmbNoiSanXuat()
+    public ComboBox GetCmbNoiSanXuat()
     {
       return cmbNoiSanXuat;
     }
-    public string getTenSanPham()
+    public string GetTenSanPham()
     {
       return txtTenSanPham.Text.Trim();
     }
-    public string getMaSanPham()
+    public string GetMaSanPham()
     {
       return txtMaSanPham.Text.Trim();
     }
-    public string getMaTheLoai()
+    public string GetMaTheLoai()
     {
       return cmbTheLoai.SelectedValue.ToString();
     }
-    public string getMaChatLieu()
+    public string GetMaChatLieu()
     {
       return cmbChatLieu.SelectedValue.ToString();
     }
-    public string getMaMau()
+    public string GetMaMau()
     {
       return cmbMau.SelectedValue.ToString();
     }
-    public string getMaMua()
+    public string GetMaMua()
     {
       return cmbMua.SelectedValue.ToString();
     }
-    public string getMaCo()
+    public string GetMaCo()
     {
       return cmbCo.SelectedValue.ToString();
     }
-    public string getMaDoiTuong()
+    public string GetMaDoiTuong()
     {
       return cmbDoiTuong.SelectedValue.ToString();
     }
-    public string getMaNoiSanXuat()
+    public string GetMaNoiSanXuat()
     {
       return cmbNoiSanXuat.SelectedValue.ToString();
     }
-    public string getTrangThai()
+    public string GetTrangThai()
     {
       return cmbTrangThai.SelectedItem.ToString();
     }
-    public int getSoLuongTonKho()
+    public int GetSoLuongTonKho()
     {
       return (int)slTonKho.Value;
     }
-    public float getDonGiaNhap()
+    public float GetDonGiaNhap()
     {
       return (float)donGiaNhap.Value;
     }
-    public float getDonGiaBan()
+    public float GetDonGiaBan()
     {
       return (float)donGiaBan.Value;
     }
-    public string getAnh()
+    public string GetAnh()
     {
       return txtAnh.Text.Trim();
     }
-    public Form getForm()
+    public Form GetForm()
     {
       return this.FindForm();
     }
-    public string getTextSearch()
+    public string GetTextSearch()
     {
       return txtSearch.Text.Trim();
     }

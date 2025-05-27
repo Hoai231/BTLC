@@ -9,78 +9,81 @@ using System.Windows.Forms;
 
 namespace BTL_C_.src.Controllers.Admin
 {
-  internal class ProductController
+  internal class ProductController : BaseController<ProductModel>
   {
     private FrmCreateProduct viewFrmCreateProduct;
     private ProductControl viewProductControl;
     private ProductDAO productDao;
+
+    protected override string EntityName => "sản phẩm";
+
     public ProductController(FrmCreateProduct viewFrmCreateProduct)
     {
       this.viewFrmCreateProduct = viewFrmCreateProduct;
       productDao = new ProductDAO();
-      findDataToCmbCreateProduct();
-      viewFrmCreateProduct.setTaoListener(insertProduct);
+      FindDataToCmbCreateProduct();
+      viewFrmCreateProduct.SetTaoListener(InsertProduct);
     }
     public ProductController(ProductControl viewProductControl)
     {
       this.viewProductControl = viewProductControl;
       productDao = new ProductDAO();
-      loadDataToGridView();
-      findDataToCmbProductControl();
-      setupEventListeners();
+      LoadDataToGridView();
+      FindDataToCmbProductControl();
+      SetupEventListeners();
     }
-    private void setupEventListeners()
+    private void SetupEventListeners()
     {
-      viewProductControl.setProductCellClickListener(OnProductCellClick);
-      viewProductControl.setLamMoiListener(reset);
-      viewProductControl.setLuuListener(updateProduct);
-      viewProductControl.setXoaListener(deleteProduct);
-      viewProductControl.setTaoListener(redirectFrmCreateProduct);
-      viewProductControl.setTimListener(findRecordsBySearch);
+      viewProductControl.SetProductCellClickListener(OnProductCellClick);
+      viewProductControl.SetLamMoiListener(Reset);
+      viewProductControl.SetLuuListener(UpdateProduct);
+      viewProductControl.SetXoaListener(Delete);
+      viewProductControl.SetTaoListener(RedirectFrmCreateProduct);
+      viewProductControl.SetTimListener(FindRecordsBySearch);
     }
-    private void findDataToCmbCreateProduct()
+    private void FindDataToCmbCreateProduct()
     {
-      CategoryDAO.fillCategoryCombo(viewFrmCreateProduct.getCmbTheLoai());
-      SizeDAO.fillSizeCombo(viewFrmCreateProduct.getCmbCo());
-      MadeInDAO.fillMadeInCombo(viewFrmCreateProduct.getCmbNoiSanXuat());
-      MaterialDAO.fillMaterialCombo(viewFrmCreateProduct.getCmbChatLieu());
-      SeasonDAO.fillSeasonCombo(viewFrmCreateProduct.getCmbMua());
-      ColorDAO.fillColorCombo(viewFrmCreateProduct.getCmbMau());
-      DemographicDAO.fillDemographicCombo(viewFrmCreateProduct.getCmbDoiTuong());
+      CategoryDAO.fillCategoryCombo(viewFrmCreateProduct.GetCmbTheLoai());
+      SizeDAO.fillSizeCombo(viewFrmCreateProduct.GetCmbCo());
+      MadeInDAO.fillMadeInCombo(viewFrmCreateProduct.GetCmbNoiSanXuat());
+      MaterialDAO.fillMaterialCombo(viewFrmCreateProduct.GetCmbChatLieu());
+      SeasonDAO.fillSeasonCombo(viewFrmCreateProduct.GetCmbMua());
+      ColorDAO.fillColorCombo(viewFrmCreateProduct.GetCmbMau());
+      DemographicDAO.fillDemographicCombo(viewFrmCreateProduct.GetCmbDoiTuong());
     }
 
-    private void findDataToCmbProductControl()
+    private void FindDataToCmbProductControl()
     {
-      CategoryDAO.fillCategoryCombo(viewProductControl.getCmbTheLoai());
-      SizeDAO.fillSizeCombo(viewProductControl.getCmbCo());
-      MadeInDAO.fillMadeInCombo(viewProductControl.getCmbNoiSanXuat());
-      MaterialDAO.fillMaterialCombo(viewProductControl.getCmbChatLieu());
-      SeasonDAO.fillSeasonCombo(viewProductControl.getCmbMua());
-      ColorDAO.fillColorCombo(viewProductControl.getCmbMau());
-      DemographicDAO.fillDemographicCombo(viewProductControl.getCmbDoiTuong());
+      CategoryDAO.fillCategoryCombo(viewProductControl.GetCmbTheLoai());
+      SizeDAO.fillSizeCombo(viewProductControl.GetCmbCo());
+      MadeInDAO.fillMadeInCombo(viewProductControl.GetCmbNoiSanXuat());
+      MaterialDAO.fillMaterialCombo(viewProductControl.GetCmbChatLieu());
+      SeasonDAO.fillSeasonCombo(viewProductControl.GetCmbMua());
+      ColorDAO.fillColorCombo(viewProductControl.GetCmbMau());
+      DemographicDAO.fillDemographicCombo(viewProductControl.GetCmbDoiTuong());
     }
-    private void insertProduct(object sender, EventArgs e)
+    private void InsertProduct(object sender, EventArgs e)
     {
       string maquanao = GenerateIdUtil.GenerateId("PRODUCT");
-      if (!InputValidate.inputCreateProductValidate(maquanao, viewFrmCreateProduct.getTenSanPham()))
+      if (!InputValidate.inputCreateProductValidate(maquanao, viewFrmCreateProduct.GetTenSanPham()))
       {
         return;
       }
       ProductModel product = new ProductModel(
           maquanao,
-          viewFrmCreateProduct.getTenSanPham(),
-          viewFrmCreateProduct.getMaCo(),
-          viewFrmCreateProduct.getMaMau(),
-          viewFrmCreateProduct.getMaMua(),
-          viewFrmCreateProduct.getMaDoiTuong(),
-          viewFrmCreateProduct.getMaNoiSanXuat(),
-          viewFrmCreateProduct.getMaTheLoai(),
-          viewFrmCreateProduct.getMaChatLieu(),
-          viewFrmCreateProduct.getSoLuongTonKho(),
+          viewFrmCreateProduct.GetTenSanPham(),
+          viewFrmCreateProduct.GetMaCo(),
+          viewFrmCreateProduct.GetMaMau(),
+          viewFrmCreateProduct.GetMaMua(),
+          viewFrmCreateProduct.GetMaDoiTuong(),
+          viewFrmCreateProduct.GetMaNoiSanXuat(),
+          viewFrmCreateProduct.GetMaTheLoai(),
+          viewFrmCreateProduct.GetMaChatLieu(),
+          viewFrmCreateProduct.GetSoLuongTonKho(),
           "", // đường dẫn ảnh để trống
-          viewFrmCreateProduct.getDonGiaNhap(),
-          viewFrmCreateProduct.getDonGiaBan(),
-          viewFrmCreateProduct.getTrangThai()
+          viewFrmCreateProduct.GetDonGiaNhap(),
+          viewFrmCreateProduct.GetDonGiaBan(),
+          viewFrmCreateProduct.GetTrangThai()
       );
       try
       {
@@ -132,89 +135,74 @@ namespace BTL_C_.src.Controllers.Admin
 
 
         string trangthai = row.Cells[13].Value?.ToString() ?? "";
-        viewProductControl.setForm(masanpham, tensanpham, theloai, cl, mau, dt, mua, nsx, co, sltonkho, dongianhap, dongiaban, anh, trangthai);
+        viewProductControl.SetForm(masanpham, tensanpham, theloai, cl, mau, dt, mua, nsx, co, sltonkho, dongianhap, dongiaban, anh, trangthai);
       }
     }
-    private void loadDataToGridView()
+    private void LoadDataToGridView()
     {// Giả sử bạn đã có DataTable chứa dữ liệu tài khoản
       DataTable allAccounts = productDao.getAllRecord();
 
       // Tạo DataView từ DataTable và lọc theo vai trò
       DataView dv = new DataView(allAccounts);
-      viewProductControl.loadDataToGridView(dv);
+      viewProductControl.LoadDataToGridView(dv);
 
     }
-    private void reset(object sender, EventArgs e)
+    private void Reset(object sender, EventArgs e)
     {
-      viewProductControl.resetForm();
-      loadDataToGridView();
+      viewProductControl.ResetForm();
+      LoadDataToGridView();
     }
-    private void updateProduct(object sender, EventArgs e)
+    private void UpdateProduct(object sender, EventArgs e)
     {
-      if (string.IsNullOrWhiteSpace(viewProductControl.getMaSanPham()))
+      if (string.IsNullOrWhiteSpace(viewProductControl.GetMaSanPham()))
       {
         MessageUtil.ShowWarning("Vui lòng chọn sản phẩm muốn sửa!");
         return;
       }
-      if (!InputValidate.inputCreateProductValidate(viewProductControl.getMaSanPham(), viewProductControl.getTenSanPham()))
+      if (!InputValidate.inputCreateProductValidate(viewProductControl.GetMaSanPham(), viewProductControl.GetTenSanPham()))
       {
         return;
       }
 
       try
       {
-        ProductModel product = new ProductModel(viewProductControl.getMaSanPham(), viewProductControl.getTenSanPham(), viewProductControl.getMaCo(), viewProductControl.getMaMau(), viewProductControl.getMaMua(), viewProductControl.getMaDoiTuong(), viewProductControl.getMaNoiSanXuat(), viewProductControl.getMaTheLoai(), viewProductControl.getMaChatLieu(), viewProductControl.getSoLuongTonKho(), viewProductControl.getAnh(), viewProductControl.getDonGiaNhap(), viewProductControl.getDonGiaBan(), viewProductControl.getTrangThai());
+        ProductModel product = new ProductModel(viewProductControl.GetMaSanPham(), viewProductControl.GetTenSanPham(), viewProductControl.GetMaCo(), viewProductControl.GetMaMau(), viewProductControl.GetMaMua(), viewProductControl.GetMaDoiTuong(), viewProductControl.GetMaNoiSanXuat(), viewProductControl.GetMaTheLoai(), viewProductControl.GetMaChatLieu(), viewProductControl.GetSoLuongTonKho(), viewProductControl.GetAnh(), viewProductControl.GetDonGiaNhap(), viewProductControl.GetDonGiaBan(), viewProductControl.GetTrangThai());
         if (!productDao.update(product))
         {
           MessageUtil.ShowError("Cập nhật không thành công!!!");
           return;
         }
         MessageUtil.ShowInfo("Cập nhật thành công!");
-        loadDataToGridView();
+        LoadDataToGridView();
       }
       catch (Exception ex)
       {
         ErrorUtil.handle(ex, "Đã xảy ra lỗi khi cập nhật!!!");
       }
     }
-    private void deleteProduct(object sender, EventArgs e)
+
+    private void FindRecordsBySearch(object sender, EventArgs e)
     {
       try
       {
-        if (string.IsNullOrWhiteSpace(viewProductControl.getMaSanPham()))
-        {
-          MessageUtil.ShowWarning("Vui lòng chọn sản phẩm cần xóa!");
-          return;
-        }
-        if (!productDao.delete(viewProductControl.getMaSanPham()))
-        {
-          MessageUtil.ShowError("Xóa không thành công!!!");
-          return;
-        }
-        MessageUtil.ShowInfo("Xóa thành công!");
-        reset(sender, e);
-      }
-      catch (Exception ex)
-      {
-        ErrorUtil.handle(ex, "Đã xảy ra khi xóa!!!");
-      }
-    }
-    private void findRecordsBySearch(object sender, EventArgs e)
-    {
-      try
-      {
-        DataView dv = productDao.findRecordsByName("tenquanao", viewProductControl.getTextSearch());
+        DataView dv = productDao.findRecordsByName("tenquanao", viewProductControl.GetTextSearch());
         viewProductControl.GetDataGridViewProduct().DataSource = dv; // Hiển thị danh sách đã lọc
-        viewProductControl.loadDataToGridView(dv);
+        viewProductControl.LoadDataToGridView(dv);
       }
       catch (Exception ex)
       {
         ErrorUtil.handle(ex, "Đã xảy ra lỗi khi tìm kiếm!!!");
       }
     }
-    private void redirectFrmCreateProduct(object sender, EventArgs e)
+    private void RedirectFrmCreateProduct(object sender, EventArgs e)
     {
-      AppController.startFrmCreateProduct(viewProductControl.getForm());
+      AppController.startFrmCreateProduct(viewProductControl.GetForm());
     }
+
+    protected override string GetId() => viewProductControl.GetMaSanPham();
+
+    protected override bool DeleteById(string id) => productDao.delete(id);
+
+    protected override void ResetView(object sender, EventArgs e) => Reset(sender, e);
   }
 }

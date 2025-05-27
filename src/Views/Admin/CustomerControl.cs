@@ -16,26 +16,26 @@ namespace BTL_C_.src.Views.Admin
     {
       InitializeComponent();
     }
-    public void setLuuListener(EventHandler handler) => btnLuu.Click += handler;
-    public void setLamMoiListener(EventHandler handler) => btnLamMoi.Click += handler;
-    public void setXoaListener(EventHandler handler) => btnXoa.Click += handler;
-    public void setTimListener(EventHandler handler) => btnTim.Click += handler;
-    public void setCustomerCellClickListener(DataGridViewCellEventHandler handler) => dgvKhachHang.CellClick += handler;
-    public void setFormData(string makh, string tenkh, string sdt, int point)
+    public void SetLuuListener(EventHandler handler) => btnLuu.Click += handler;
+    public void SetLamMoiListener(EventHandler handler) => btnLamMoi.Click += handler;
+    public void SetXoaListener(EventHandler handler) => btnXoa.Click += handler;
+    public void SetTimListener(EventHandler handler) => btnTim.Click += handler;
+    public void SetCustomerCellClickListener(DataGridViewCellEventHandler handler) => dgvKhachHang.CellClick += handler;
+    public void SetFormData(string makh, string tenkh, string sdt, int point)
     {
       txtMaKH.Text = makh;
       txtTenKH.Text = tenkh;
       mskSDT.Text = sdt;
       numDiem.Value = point;
     }
-    public void resetForm()
+    public void ResetForm()
     {
       txtMaKH.Text = "";
       txtTenKH.Text = "";
       mskSDT.Text = "";
       numDiem.Value = 1;
     }
-    public void loadDataToGridView(DataView dv)
+    public void LoadDataToGridView(DataView dv)
     {
       dgvKhachHang.DataSource = dv;
       dgvKhachHang.Columns[0].HeaderText = "Mã khách hàng";
@@ -50,12 +50,12 @@ namespace BTL_C_.src.Views.Admin
       dgvKhachHang.AllowUserToAddRows = false;
 
     }
-    public DataGridView getDataGridViewCustomer() => dgvKhachHang;
-    public string getMaKH() => txtMaKH.Text.Trim();
-    public string getTenKH() => txtTenKH.Text.Trim();
-    public string getSDT() => mskSDT.Text.Trim();
-    public int getDiemTichLuy() => (int)numDiem.Value;
-    public string getTextSearch() => txtSearch.Text.Trim();
+    public DataGridView GetDataGridViewCustomer() => dgvKhachHang;
+    public string GetMaKH() => txtMaKH.Text.Trim();
+    public string GetTenKH() => txtTenKH.Text.Trim();
+    public string GetSDT() => mskSDT.Text.Trim();
+    public int GetDiemTichLuy() => (int)numDiem.Value;
+    public string GetTextSearch() => txtSearch.Text.Trim();
 
   }
 }

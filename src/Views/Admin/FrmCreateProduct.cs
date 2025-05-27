@@ -9,80 +9,80 @@ namespace BTL_C_.src.Views.Admin
     {
       InitializeComponent();
     }
-    public void setTaoListener(EventHandler handler) => btnTao.Click += handler;
-    public ComboBox getCmbCo()
+    public void SetTaoListener(EventHandler handler) => btnTao.Click += handler;
+    public ComboBox GetCmbCo()
     {
       return cmbCo;
     }
-    public ComboBox getCmbChatLieu()
+    public ComboBox GetCmbChatLieu()
     {
       return cmbChatLieu;
     }
-    public ComboBox getCmbTheLoai()
+    public ComboBox GetCmbTheLoai()
     {
       return cmbTheLoai;
     }
-    public ComboBox getCmbMua()
+    public ComboBox GetCmbMua()
     {
       return cmbMua;
     }
-    public ComboBox getCmbMau()
+    public ComboBox GetCmbMau()
     {
       return cmbMau;
     }
-    public ComboBox getCmbDoiTuong()
+    public ComboBox GetCmbDoiTuong()
     {
       return cmbDoiTuong;
     }
-    public ComboBox getCmbNoiSanXuat()
+    public ComboBox GetCmbNoiSanXuat()
     {
       return cmbNoiSanXuat;
     }
-    public string getTenSanPham()
+    public string GetTenSanPham()
     {
       return txtTenSanPham.Text.Trim();
     }
-    public string getMaTheLoai()
+    public string GetMaTheLoai()
     {
       return cmbTheLoai.SelectedValue.ToString();
     }
-    public string getMaChatLieu()
+    public string GetMaChatLieu()
     {
       return cmbChatLieu.SelectedValue.ToString();
     }
-    public string getMaMau()
+    public string GetMaMau()
     {
       return cmbMau.SelectedValue.ToString();
     }
-    public string getMaMua()
+    public string GetMaMua()
     {
       return cmbMua.SelectedValue.ToString();
     }
-    public string getMaCo()
+    public string GetMaCo()
     {
       return cmbCo.SelectedValue.ToString();
     }
-    public string getMaDoiTuong()
+    public string GetMaDoiTuong()
     {
       return cmbDoiTuong.SelectedValue.ToString();
     }
-    public string getMaNoiSanXuat()
+    public string GetMaNoiSanXuat()
     {
       return cmbNoiSanXuat.SelectedValue.ToString();
     }
-    public string getTrangThai()
+    public string GetTrangThai()
     {
       return cmbTrangThai.SelectedItem.ToString();
     }
-    public int getSoLuongTonKho()
+    public int GetSoLuongTonKho()
     {
       return (int)slTonKho.Value;
     }
-    public float getDonGiaNhap()
+    public float GetDonGiaNhap()
     {
       return (float)donGiaNhap.Value;
     }
-    public float getDonGiaBan()
+    public float GetDonGiaBan()
     {
       return (float)donGiaBan.Value;
     }

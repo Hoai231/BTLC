@@ -66,6 +66,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\Controllers\Admin\AccountController.cs" />
+    <Compile Include="src\Controllers\Admin\BaseController.cs" />
     <Compile Include="src\Controllers\Admin\CustomerController.cs" />
     <Compile Include="src\Controllers\Admin\DashBoardController.cs" />
     <Compile Include="src\Controllers\Admin\EmployeeController.cs" />
