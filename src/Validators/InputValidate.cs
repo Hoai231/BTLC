@@ -1,53 +1,48 @@
 ﻿using BTL_C_.src.Utils;
+using System.Linq;
 
 namespace BTL_C_.src.Validators
 {
   internal class InputValidate
   {
+    private static bool CheckEmptyFields(params string[] fields)
+    {
+      if (fields.Any(string.IsNullOrWhiteSpace))
+      {
+        MessageUtil.ShowWarning(MessageConstants.INPUT_WARN);
+        return false;
+      }
+      return true;
+    }
+
     public static bool inputLoginValidate(string email, string password)
     {
-      if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
-      {
-        MessageUtil.ShowWarning(MessageConstants.INPUT_WARN);
-        return false;
-      }
-      return true;
+      return CheckEmptyFields(email, password);
     }
+
     public static bool inputCreateAccountValidate(string email, string name, string password, string role)
     {
-      if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(role))
-      {
-        MessageUtil.ShowWarning(MessageConstants.INPUT_WARN);
-        return false;
-      }
-      return true;
+      return CheckEmptyFields(email, name, password, role);
     }
+
     public static bool inputUpdateAccountValidate(string email, string name, string vaitro, string status)
     {
-      if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(vaitro) || string.IsNullOrWhiteSpace(status))
-      {
-        MessageUtil.ShowWarning(MessageConstants.INPUT_WARN);
-        return false;
-      }
-      return true;
+      return CheckEmptyFields(email, name, vaitro, status);
     }
+
     public static bool inputCreateProductValidate(string maquanao, string tenquanao)
     {
-      if (string.IsNullOrWhiteSpace(maquanao) || string.IsNullOrWhiteSpace(tenquanao))
-      {
-        MessageUtil.ShowWarning(MessageConstants.INPUT_WARN);
-        return false;
-      }
-      return true;
+      return CheckEmptyFields(maquanao, tenquanao);
     }
+
     public static bool inputCreaetSupplierValidate(string mancc, string tenncc, string diachi, string sdt)
     {
-      if (string.IsNullOrWhiteSpace(mancc) || string.IsNullOrWhiteSpace(tenncc) || string.IsNullOrWhiteSpace(diachi) || string.IsNullOrWhiteSpace(sdt))
-      {
-        MessageUtil.ShowWarning(MessageConstants.INPUT_WARN);
-        return false;
-      }
-      return true;
+      return CheckEmptyFields(mancc, tenncc, diachi, sdt);
+    }
+
+    public static bool inputSeasonValidate(string tenmua)
+    {
+      return CheckEmptyFields(tenmua);
     }
   }
 }

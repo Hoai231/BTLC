@@ -70,6 +70,7 @@
     <Compile Include="src\Controllers\Admin\EmployeeController.cs" />
     <Compile Include="src\Controllers\Admin\HomeController.cs" />
     <Compile Include="src\Controllers\Admin\ProductController.cs" />
+    <Compile Include="src\Controllers\Admin\SeasonController.cs" />
     <Compile Include="src\Controllers\Admin\SupplierController.cs" />
     <Compile Include="src\Controllers\AppController.cs" />
     <Compile Include="src\Controllers\LoginController.cs" />
@@ -143,6 +144,12 @@
     <Compile Include="src\Views\Admin\FrmCreateProduct.Designer.cs">
       <DependentUpon>FrmCreateProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="src\Views\Admin\FrmSeason.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\Views\Admin\FrmSeason.Designer.cs">
+      <DependentUpon>FrmSeason.cs</DependentUpon>
+    </Compile>
     <Compile Include="src\Views\Admin\Home.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -197,6 +204,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="src\Views\Admin\FrmCreateProduct.resx">
       <DependentUpon>FrmCreateProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\Views\Admin\FrmSeason.resx">
+      <DependentUpon>FrmSeason.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\Views\Admin\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
