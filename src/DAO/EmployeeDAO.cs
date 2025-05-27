@@ -25,13 +25,29 @@ namespace BTL_C_.src.DAO
 
       return ExecuteNonQuery(query, parameters);
     }
+    public bool update(EmployeeModel employee)
+    {
+      string query = "UPDATE tblNhanVien set tennv = @ten, gioitinh = @gioitinh, ngaysinh = @ngaysinh, sdt = @sdt, diachi = @diachi, macv = @macv where manv = @ma";
+      var parameters = new Dictionary<string, object>
+        {
+            {"@ma", employee.MaNhanVien},
+            {"@ten", employee.TenNhanVien},
+            {"@gioitinh", employee.GioiTinh},
+            {"@ngaysinh", employee.NgaySinh},
+            {"@sdt", employee.SoDienThoai},
+            {"@diachi", employee.DiaChi},
+            {"@macv",employee.MaCV }
+        };
 
-    protected override string getColumns() => " manv, tennv, gioitinh, ngaysinh, sdt, diachi";
+      return ExecuteNonQuery(query, parameters);
+    }
+
+    protected override string getColumns() => " manv, tennv, gioitinh, ngaysinh, sdt, tencv, diachi";
 
     protected override string getKeyColumn() => " manv ";
     protected override string GetKeyExist() => " manv ";
 
-    protected override string GetTableName() => " tblNhanVien nv LEFT JOIN tblCongViec cv ON nv.macv = cv.macv";
+    protected override string GetTableName() => " tblNhanVien nv LEFT JOIN tblCongViec cv ON nv.macv = cv.macv ";
 
     protected override EmployeeModel MapReaderToObject(SqlDataReader reader)
     {

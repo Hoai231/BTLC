@@ -21,6 +21,7 @@ namespace BTL_C_.src.Controllers.Admin
       viewHome.getSidebar().setSanPhamListener(initViewWithControllerProduct);
       viewHome.getSidebar().setNhaCungCapListener(initViewWithControllerSupplier);
       viewHome.getSidebar().setTrangChuListener(initViewWithControllerDashBoard);
+      viewHome.getSidebar().setNhanVienListener(initViewWithControllerEmployee);
       viewHome.getSidebar().setDangXuatListener(logout);
 
     }
@@ -48,6 +49,12 @@ namespace BTL_C_.src.Controllers.Admin
       new DashBoardController(dashBoardControl);
       viewHome.loadControl(dashBoardControl);
 
+    }
+    private void initViewWithControllerEmployee(object sender, EventArgs e)
+    {
+      EmployeeControl employeeControl = new EmployeeControl();
+      new EmployeeController(employeeControl);
+      viewHome.loadControl(employeeControl);
     }
     private void logout(object sender, EventArgs e)
     {

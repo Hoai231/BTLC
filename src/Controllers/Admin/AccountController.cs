@@ -60,7 +60,7 @@ namespace BTL_C_.src.Controllers.Admin
           {
             employee_id = GenerateIdUtil.GenerateId("EMPLOYEE");
           }
-          EmployeeModel employee = new EmployeeModel(employee_id, "", null, "", "", null);
+          EmployeeModel employee = new EmployeeModel(employee_id, "", null, "", "", null, null);
           account = new AccountModel(acc_id, viewFrmCreateAccount.getEmail(), viewFrmCreateAccount.getTenDangNhap(), HashPasswordUtil.hashPassword(viewFrmCreateAccount.getPassword()), viewFrmCreateAccount.getVaiTro(), employee_id, null);
           if (!employeeDAO.insert(employee))
           {
@@ -82,7 +82,8 @@ namespace BTL_C_.src.Controllers.Admin
       }
     }
     private void loadDataToGridView()
-    {// Giả sử bạn đã có DataTable chứa dữ liệu tài khoản
+    {
+      // Giả sử bạn đã có DataTable chứa dữ liệu tài khoản
       DataTable allAccounts = accountDao.getAllRecord();
 
       // Tạo DataView từ DataTable và lọc theo vai trò

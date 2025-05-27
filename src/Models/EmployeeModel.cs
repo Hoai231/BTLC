@@ -6,26 +6,28 @@ namespace BTL_C_.src.Models
   {
     public string MaNhanVien { get; set; }
     public string TenNhanVien { get; set; }
-    public DateTime NgaySinh { get; set; }
+    public DateTime? NgaySinh { get; set; }
     public string SoDienThoai { get; set; }
     public string DiaChi { get; set; }
     public string MaCV { get; set; }
-    public bool GioiTinh { get; set; }
+    public string GioiTinh { get; set; }
 
 
     // Constructor không tham số
     public EmployeeModel() { }
 
     // Constructor đầy đủ tham số
-    public EmployeeModel(string maNhanVien, string tenNhanVien, DateTime? ngaySinh,
-                    string soDienThoai, string diaChi, string maCV)
+    public EmployeeModel(string manhanvien, string tennhanvien, DateTime? ngaysinh,
+                    string sodienthoai, string diachi, string macv, string gioitinh)
     {
-      MaNhanVien = maNhanVien;
-      TenNhanVien = tenNhanVien;
-      NgaySinh = ngaySinh ?? default(DateTime);
-      SoDienThoai = soDienThoai;
-      DiaChi = diaChi;
-      MaCV = maCV;
+      MaNhanVien = manhanvien;
+      TenNhanVien = tennhanvien;
+      NgaySinh = ngaysinh ?? null;
+      SoDienThoai = sodienthoai;
+      DiaChi = diachi;
+      MaCV = macv;
+      GioiTinh = gioitinh;
     }
+
   }
 }

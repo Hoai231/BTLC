@@ -113,7 +113,7 @@ namespace BTL_C_.src.DAO
       if (GetAlias() == null)
         query = "select" + getColumns() + "from " + GetTableName() + " where deleted=0";
       else
-        query = "select" + getColumns() + "from " + GetTableName() + " where " + GetAlias() + ".deleted=0";
+        query = "select" + getColumns() + " from " + GetTableName() + " where " + GetAlias() + ".deleted=0";
       using (SqlConnection conn = ConfigDB.GetConnection())
       {
         try

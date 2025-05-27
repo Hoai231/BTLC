@@ -1,5 +1,6 @@
 ﻿using BTL_C_.src.Utils;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace BTL_C_.src.Views.Admin
 {
@@ -36,6 +37,8 @@ namespace BTL_C_.src.Views.Admin
       this.btnSanPham = new System.Windows.Forms.Button();
       this.btnDangXuat = new System.Windows.Forms.Button();
       this.btnNhaCungCap = new System.Windows.Forms.Button();
+      this.label1 = new System.Windows.Forms.Label();
+      this.btnNhanVien = new System.Windows.Forms.Button();
       this.SuspendLayout();
       // 
       // btnTrangChu
@@ -83,11 +86,31 @@ namespace BTL_C_.src.Views.Admin
       this.btnNhaCungCap.Text = "Nhà cung cấp";
       this.btnNhaCungCap.UseVisualStyleBackColor = true;
       // 
+      // label1
+      // 
+      this.label1.AutoSize = true;
+      this.label1.Location = new System.Drawing.Point(90, 10);
+      this.label1.Name = "label1";
+      this.label1.Size = new System.Drawing.Size(51, 16);
+      this.label1.TabIndex = 5;
+      this.label1.Text = "BTL C#";
+      // 
+      // btnNhanVien
+      // 
+      this.btnNhanVien.Location = new System.Drawing.Point(0, 226);
+      this.btnNhanVien.Name = "btnNhanVien";
+      this.btnNhanVien.Size = new System.Drawing.Size(243, 50);
+      this.btnNhanVien.TabIndex = 6;
+      this.btnNhanVien.Text = "Nhân Viên";
+      this.btnNhanVien.UseVisualStyleBackColor = true;
+      // 
       // SidebarControl
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BackColor = System.Drawing.Color.GreenYellow;
+      this.Controls.Add(this.btnNhanVien);
+      this.Controls.Add(this.label1);
       this.Controls.Add(this.btnNhaCungCap);
       this.Controls.Add(this.btnDangXuat);
       this.Controls.Add(this.btnSanPham);
@@ -96,6 +119,7 @@ namespace BTL_C_.src.Views.Admin
       this.Name = "SidebarControl";
       this.Size = new System.Drawing.Size(243, 546);
       this.ResumeLayout(false);
+      this.PerformLayout();
 
     }
 
@@ -106,5 +130,7 @@ namespace BTL_C_.src.Views.Admin
     private System.Windows.Forms.Button btnSanPham;
     private System.Windows.Forms.Button btnDangXuat;
     private System.Windows.Forms.Button btnNhaCungCap;
+    private Label label1;
+    private Button btnNhanVien;
   }
 }
