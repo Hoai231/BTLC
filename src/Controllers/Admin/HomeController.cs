@@ -22,6 +22,7 @@ namespace BTL_C_.src.Controllers.Admin
       viewHome.getSidebar().setNhaCungCapListener(initViewWithControllerSupplier);
       viewHome.getSidebar().setTrangChuListener(initViewWithControllerDashBoard);
       viewHome.getSidebar().setNhanVienListener(initViewWithControllerEmployee);
+      viewHome.getSidebar().setKhachHangListener(initViewWithControllerCustomer);
       viewHome.getSidebar().setDangXuatListener(logout);
 
     }
@@ -55,6 +56,12 @@ namespace BTL_C_.src.Controllers.Admin
       EmployeeControl employeeControl = new EmployeeControl();
       new EmployeeController(employeeControl);
       viewHome.loadControl(employeeControl);
+    }
+    private void initViewWithControllerCustomer(object sender, EventArgs e)
+    {
+      CustomerControl customerControl = new CustomerControl();
+      new CustomerController(customerControl);
+      viewHome.loadControl(customerControl);
     }
     private void logout(object sender, EventArgs e)
     {

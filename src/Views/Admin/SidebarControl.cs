@@ -15,5 +15,6 @@ namespace BTL_C_.src.Views.Admin
     public void setNhaCungCapListener(EventHandler handler) => btnNhaCungCap.Click += handler;
     public void setTrangChuListener(EventHandler handler) => btnTrangChu.Click += handler;
     public void setNhanVienListener(EventHandler handler) => btnNhanVien.Click += handler;
+    public void setKhachHangListener(EventHandler handler) => btnKhachHang.Click += handler;
   }
 }
