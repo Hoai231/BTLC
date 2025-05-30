@@ -1,4 +1,6 @@
 ﻿using System;
+using BCrypt.Net;
+
 
 namespace BTL_C_.src.Utils
 {

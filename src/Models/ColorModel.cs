@@ -4,5 +4,10 @@
   {
     public string mamau { get; set; }
     public string tenmau { get; set; }
+    public ColorModel(string mamau, string tenmau)
+    {
+      this.mamau = mamau;
+      this.tenmau = tenmau;
+    }
   }
 }

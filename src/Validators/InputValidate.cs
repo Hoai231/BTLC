@@ -1,4 +1,5 @@
 ﻿using BTL_C_.src.Utils;
+using System;
 using System.Linq;
 
 namespace BTL_C_.src.Validators
@@ -43,6 +44,23 @@ namespace BTL_C_.src.Validators
     public static bool inputSeasonValidate(string tenmua)
     {
       return CheckEmptyFields(tenmua);
+    }
+
+    internal static bool inputColorValidate(string v)
+    {
+      throw new NotImplementedException();
+    }
+    internal static bool inputMaterialValidate(string v)
+    {
+      throw new NotImplementedException();
+    }
+    internal static bool inputSizeValidate(string v)
+    {
+      throw new NotImplementedException();
+    }
+    internal static bool inputObjectValidate(string v)
+    {
+      throw new NotImplementedException();
     }
   }
 }

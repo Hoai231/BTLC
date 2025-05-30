@@ -8,7 +8,7 @@ namespace BTL_C_.Configs
   internal class ConfigDB
   {
     private static SqlConnection con;
-    private static string connectionString = "Data Source=MAY1\\SQLEXPRESS;Initial Catalog=QuanLyCuaHangQuanAo;Integrated Security=True;Encrypt=False";
+    private static string connectionString = "Data Source=DESKTOP-SPCD7J6\\SQLEXPRESS;Initial Catalog=QuanLyCuaHangQuanAo;Integrated Security=True;Encrypt=False";
 
     // Tạo kết nối nếu chưa có
     public static void Connect()
