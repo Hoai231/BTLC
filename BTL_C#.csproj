@@ -67,17 +67,20 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\Controllers\Admin\AccountController.cs" />
     <Compile Include="src\Controllers\Admin\BaseController.cs" />
+    <Compile Include="src\Controllers\Admin\CategoryController.cs" />
     <Compile Include="src\Controllers\Admin\ColorController.cs" />
     <Compile Include="src\Controllers\Admin\CustomerController.cs" />
     <Compile Include="src\Controllers\Admin\DashBoardController.cs" />
     <Compile Include="src\Controllers\Admin\EmployeeController.cs" />
     <Compile Include="src\Controllers\Admin\HomeController.cs" />
+    <Compile Include="src\Controllers\Admin\MadeInController.cs" />
     <Compile Include="src\Controllers\Admin\MaterialController.cs" />
     <Compile Include="src\Controllers\Admin\ObjectController.cs" />
     <Compile Include="src\Controllers\Admin\ProductController.cs" />
     <Compile Include="src\Controllers\Admin\SeasonController.cs" />
     <Compile Include="src\Controllers\Admin\SizeController.cs" />
     <Compile Include="src\Controllers\Admin\SupplierController.cs" />
+    <Compile Include="src\Controllers\Admin\TaskController.cs" />
     <Compile Include="src\Controllers\AppController.cs" />
     <Compile Include="src\Controllers\LoginController.cs" />
     <Compile Include="src\DAO\AccountDAO.cs" />
@@ -146,6 +149,12 @@
     <Compile Include="src\Views\Admin\EmployeeControl.Designer.cs">
       <DependentUpon>EmployeeControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="src\Views\Admin\FrmCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\Views\Admin\FrmCategory.Designer.cs">
+      <DependentUpon>FrmCategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="src\Views\Admin\FrmColor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -163,6 +172,12 @@
     </Compile>
     <Compile Include="src\Views\Admin\FrmCreateProduct.Designer.cs">
       <DependentUpon>FrmCreateProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="src\Views\Admin\FrmMadeIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\Views\Admin\FrmMadeIn.Designer.cs">
+      <DependentUpon>FrmMadeIn.cs</DependentUpon>
     </Compile>
     <Compile Include="src\Views\Admin\FrmMaterial.cs">
       <SubType>Form</SubType>
@@ -187,6 +202,12 @@
     </Compile>
     <Compile Include="src\Views\Admin\FrmSize.Designer.cs">
       <DependentUpon>FrmSize.cs</DependentUpon>
+    </Compile>
+    <Compile Include="src\Views\Admin\FrmTask.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\Views\Admin\FrmTask.Designer.cs">
+      <DependentUpon>FrmTask.cs</DependentUpon>
     </Compile>
     <Compile Include="src\Views\Admin\Home.cs">
       <SubType>Form</SubType>
@@ -240,17 +261,26 @@
     <EmbeddedResource Include="src\Views\Admin\EmployeeControl.resx">
       <DependentUpon>EmployeeControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="src\Views\Admin\FrmCategory.resx">
+      <DependentUpon>FrmCategory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="src\Views\Admin\FrmCreateAccount.resx">
       <DependentUpon>FrmCreateAccount.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\Views\Admin\FrmCreateProduct.resx">
       <DependentUpon>FrmCreateProduct.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="src\Views\Admin\FrmMadeIn.resx">
+      <DependentUpon>FrmMadeIn.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="src\Views\Admin\FrmMaterial.resx">
       <DependentUpon>FrmMaterial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\Views\Admin\FrmSeason.resx">
       <DependentUpon>FrmSeason.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\Views\Admin\FrmTask.resx">
+      <DependentUpon>FrmTask.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\Views\Admin\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>

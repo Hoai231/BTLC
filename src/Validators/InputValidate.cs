@@ -62,5 +62,17 @@ namespace BTL_C_.src.Validators
     {
       throw new NotImplementedException();
     }
+    internal static bool inputCategoryValidate(string v)
+    {
+      throw new NotImplementedException();
+    }
+    internal static bool inputTaskValidate(string v)
+    {
+      throw new NotImplementedException();
+    }
+    internal static bool inputMadeInValidate(string v)
+    {
+      throw new NotImplementedException();
+    }
   }
 }
